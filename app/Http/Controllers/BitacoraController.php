@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Bitacora;
-use App\Permission;
+use App\Models\Bitacora;
+use App\Models\Permission;
 use DB;
 
 class BitacoraController extends Controller

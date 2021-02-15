@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Collective\Html\Eloquent\FormAccessible;
+//use Collective\Html\Eloquent\FormAccessible;
 
 class Persona extends Model
 {
-	use FormAccessible;
+	//use FormAccessible;
 
     protected $table = "persona";
     public $timestamps=false;

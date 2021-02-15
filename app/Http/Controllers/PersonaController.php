@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Empleado;
-use App\Odontologo;
-use App\Paciente;
-use App\Recepcionista;
+use App\Models\Empleado;
+use App\Models\Odontologo;
+use App\Models\Paciente;
+use App\Models\Recepcionista;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
-use App\Persona;
+use App\Models\Persona;
 use DB;
 
 

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\PiezaDental;
-use App\Odontograma;
-use App\diente;
+use App\Models\PiezaDental;
+use App\Models\Odontograma;
+use App\Models\diente;
 
 class OdontogramaController extends Controller
 {

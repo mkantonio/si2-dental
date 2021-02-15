@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
- use App\Especialidad;
+ use App\Models\Especialidad;
  use DB;
 
 class especialidadController extends Controller

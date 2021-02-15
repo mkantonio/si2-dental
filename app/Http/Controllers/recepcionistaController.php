@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Persona;
-use App\Recepcionista;
+use App\Models\Persona;
+use App\Models\Recepcionista;
 use DB;
 
 class recepcionistaController extends Controller

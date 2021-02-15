@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Persona;
-use App\Odontologo;
+use App\Models\Persona;
+use App\Models\Odontologo;
 use DB;
-use App\Especialidad;
-use App\DetalleEspecialidad;
-use App\Bitacora;
+use App\Models\Especialidad;
+use App\Models\DetalleEspecialidad;
+use App\Models\Bitacora;
  use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;

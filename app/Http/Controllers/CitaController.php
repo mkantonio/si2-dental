@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Cita;
-use App\Paciente;
-use App\Persona;
+use App\Models\Cita;
+use App\Models\Paciente;
+use App\Models\Persona;
 
 class CitaController extends Controller
 {

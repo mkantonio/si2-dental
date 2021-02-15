@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Anamnesis;
-use App\Padecimiento;
-use App\Historial;
+use App\Models\Anamnesis;
+use App\Models\Padecimiento;
+use App\Models\Historial;
 class anamnesisController extends Controller
 {
     /**

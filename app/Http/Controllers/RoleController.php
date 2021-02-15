@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Role;
-use App\Permission;
+use App\Models\Role;
+use App\Models\Permission;
 use DB;
 
 class RoleController extends Controller

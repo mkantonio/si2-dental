@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Padecimiento;
+use App\Models\Padecimiento;
 use DB;
-use App\Historial;
-use App\Anamnesis;
-use App\Persona;
+use App\Models\Historial;
+use App\Models\Anamnesis;
+use App\Models\Persona;
 class historialController extends Controller
 {
     /**

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Tratamiento;
-use App\Servicio;
-use App\DetalleServicio;
+use App\Models\Tratamiento;
+use App\Models\Servicio;
+use App\Models\DetalleServicio;
 
 class ServicioController extends Controller
 {

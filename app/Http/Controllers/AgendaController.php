@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Cita;
-use App\Persona;
-use App\Paciente;
-use App\Agenda;
+use App\Models\Cita;
+use App\Models\Persona;
+use App\Models\Paciente;
+use App\Models\Agenda;
 
 
 

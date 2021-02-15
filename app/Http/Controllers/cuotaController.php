@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\PlanPago;
+use App\Models\PlanPago;
 class cuotaController extends Controller
 {
     /**

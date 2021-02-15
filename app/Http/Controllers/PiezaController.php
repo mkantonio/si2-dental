@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use DB;
-use App\Persona;
-use App\Historial;
-use App\Odontograma;
-use App\Paciente;
-use App\PiezaDental;
+use App\Models\Persona;
+use App\Models\Historial;
+use App\Models\Odontograma;
+use App\Models\Paciente;
+use App\Models\PiezaDental;
 
 
 

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
-use App\Persona;
+use App\Models\Area;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Odontologo;
-use App\Role;
+use App\Models\User;
+use App\Models\Odontologo;
+use App\Models\Role;
 use DB;
 use Hash;
 
