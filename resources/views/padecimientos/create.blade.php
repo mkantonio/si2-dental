@@ -22,12 +22,14 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'padecimientos.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('padecimientos.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
     <div class="row">
         <div class="col-lg-6 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Nombre de la Enfermedad:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
+                <input placeholder="Nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
       </div>
@@ -35,7 +37,7 @@
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Descripcion de la Enfermedad:</strong>
-                {!! Form::textarea('descripcion', null, array('placeholder' => 'Apellido','class' => 'form-control')) !!}
+                <textarea placeholder="Apellido" class="form-control" name="descripcion" ></textarea>
             </div>
         </div>
       </div>
@@ -48,7 +50,7 @@
 
     </div>
 
-    {!! Form::close() !!}
+    </form>
 
 
 @endsection

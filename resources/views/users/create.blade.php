@@ -21,7 +21,9 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('users.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -64,19 +66,24 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong><h4>Password</h4></strong>
-                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                <input placeholder="password" class="form-control" name="password" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong><h4>Confirmar Contraseña</h4></strong>
-                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                <input placeholder="confirm password" class="form-control" name="confirm-password" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
             <strong><h4>Rol</h4></strong>
-                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
+{{--                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}--}}
+                <select class="form-control" name="roles[]">
+                    @foreach($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 
@@ -84,7 +91,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 @endsection
 
 @section('script')

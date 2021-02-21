@@ -21,24 +21,27 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+    <form action="{{route('roles.store')}}" method="POST">
+        @method('POST')
+        @csrf
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <input placeholder="Name" class="form-control" name="name" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Display Name:</strong>
-                {!! Form::text('display_name', null, array('placeholder' => 'Display Name','class' => 'form-control')) !!}
+                <input placeholder="Display Name" class="form-control" name="display_name" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control','style'=>'height:100px')) !!}
+                <textarea placeholder="Description" class="form-control" name="description" style="height:100px" ></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -46,8 +49,8 @@
                 <strong>Permission:</strong>
                 <br/>
                 @foreach($permission as $value)
-                    <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                        {{ $value->name }}</label>
+                    <label><input class="name" name="permission[]" type="checkbox" value="{{$value->id}}">
+                        {{ $value->name}}</label>
                     <br/>
                 @endforeach
             </div>
@@ -56,5 +59,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

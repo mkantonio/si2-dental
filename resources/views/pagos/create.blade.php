@@ -22,7 +22,9 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'pagos.store','method'=>'POST')) !!}
+    <form method="POST" action="{{route('pagos.update')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
 
 
       <div class="col-xs-10 col-sm-12 col-md-10">
@@ -44,7 +46,7 @@
             <ul class="list-unstyled">
             @foreach($servicio as $piv)
               <label>
-                {{ Form::checkbox('servicios[]', $piv->id_s, null) }} Numero de Servicio:-{{$piv->id_s}}--{{ $piv->name}}
+                  <input class="name" name="servicios[]" type="checkbox" value="{{$piv->id}}"> Numero de Servicio:-{{$piv->id_s}}--{{ $piv->name}}
               </label>
             @endforeach
             </ul>
@@ -59,7 +61,7 @@
               <ul class="list-unstyled">
               @foreach($servicio as $piv)
                 <label>
-                  {{ Form::checkbox('costos[]', $piv->tc, null) }} Numero de Servicio:__{{$piv->id_s}}-{{ $piv->name}}-{{$piv->tc}}
+                <input class="name" name="costos[]" type="checkbox" value="{{$piv->tc}}"> Numero de Servicio:__{{$piv->id_s}}-{{ $piv->name}}-{{$piv->tc}}
                 </label>
               @endforeach
               </ul>
@@ -75,7 +77,7 @@
 
     </div>
 
-    {!! Form::close() !!}
+    </form>
 
 
 @endsection

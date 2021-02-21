@@ -57,3 +57,11 @@
     </table>
 
 @endsection
+
+<script>
+    //console.log({{ request()->route()->uri }});
+    console.log("{{ (request()->is('users'||'bitacoras'||'roles'||'home')) ? 'aaa' : 'b' }}");
+    console.log({{ (request()->is('users'))  }});
+
+
+</script>

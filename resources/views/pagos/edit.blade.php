@@ -12,12 +12,14 @@
             </div>
         </div>
     </div>
-    {!! Form::model($plan1, ['method' => 'PATCH','route' => ['pagos.update', $plan1->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('pagos.update', $plan1->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Codigo del plan:</strong>
-                    {!! Form::text('id', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+              <input placeholder="id" class="form-control" name="id" type="text">
           </div>
       </div>
 
@@ -25,7 +27,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Monto Total a Cancelar:</strong>
-                      {!! Form::text('monto_total', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="monto_total" class="form-control" name="monto_total" type="text">
             </div>
         </div>
 
@@ -34,7 +36,7 @@
         </div>
       </div>
 
-        {!! Form::close() !!}
+        </form>
 
 
 

@@ -186,6 +186,15 @@
                 }
             } );
         } );*/
+
+        var treemenu = document.getElementsByClassName('treeview-menu');
+        for (menu of treemenu){
+            for(child of menu.children){
+                if(child.className == 'active'){
+                    menu.style.display = 'block'
+                }
+            }
+        }
     } );
 
 

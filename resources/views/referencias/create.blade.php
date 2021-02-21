@@ -21,30 +21,32 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'referencias.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('referencias.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
+                <input placeholder="nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {!! Form::text('apellido', null, array('placeholder' => 'Apellido','class' => 'form-control')) !!}
+                <input placeholder="apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefono:</strong>
-                {!! Form::text('telefono', null, array('placeholder' => 'Telefono','class' => 'form-control')) !!}
+                <input placeholder="telefono" class="form-control" name="telefono" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Relacion:</strong>
-                {!! Form::text('relacion', null, array('placeholder' => 'Relacion','class' => 'form-control')) !!}
+                <input placeholder="relacion" class="form-control" name="relacion" type="text">
             </div>
         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
@@ -61,5 +63,5 @@
             <button type="submit" class="btn btn-primary">Aceptar</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

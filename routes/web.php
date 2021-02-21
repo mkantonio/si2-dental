@@ -20,13 +20,11 @@ use App\Http\Controllers\OdontologoController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\planController;
 use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\Auth\Controller;
 use App\Http\Controllers\especialidadController;
 use App\Http\Controllers\OcupacionController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\recepcionistaController;
-
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,12 +67,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
 
     Route::resource('users', UserController::class);
-    Route::get('roles',[RoleController::class, 'index'])->name('rolex.index');
-    Route::post('roles/create',[RoleController::class, 'store'])->name('rolex.store');
-    Route::get('roles/{id}',[RoleController::class, 'show'])->name('rolex.show');
-    Route::get('roles/{id}/edit',[RoleController::class, 'edit'])->name('rolex.edit');
-    Route::patch('roles/{id}',[RoleController::class, 'update'])->name('rolex.update');
-    Route::delete('roles/{id}',[RoleController::class, 'destroy'])->name('rolex.destroy');
+    Route::get('roles',[RoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/create',[RoleController::class, 'create'])->name('roles.create');
+    Route::post('roles/create',[RoleController::class, 'store'])->name('roles.store');
+    Route::get('roles/{id}',[RoleController::class, 'show'])->name('roles.show');
+    Route::get('roles/{id}/edit',[RoleController::class, 'edit'])->name('roles.edit');
+    Route::patch('roles/{id}',[RoleController::class, 'update'])->name('roles.update');
+    Route::delete('roles/{id}',[RoleController::class, 'destroy'])->name('roles.destroy');
 
 });
 

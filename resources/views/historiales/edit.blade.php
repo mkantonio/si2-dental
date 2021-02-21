@@ -12,7 +12,9 @@
         </div>
     </div>
 
-    {!! Form::model($citas, ['method' => 'PATCH','route' => ['historiales.update', $historial->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('historiales.update', $historial->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
   <div class="row">
     <div class="col-xs-10 col-sm-12 col-md-12">
         <div class="form-group">
@@ -160,7 +162,8 @@
       <div class="form-group">
       <ul class="list-unstyled">
         @foreach($enfermedades as $value)
-            <label>{{ Form::checkbox('enfermedades[]', $value->id, in_array($value->id, $role1) ? true : false, array('class' => 'name')) }}
+            <label>
+                <input class="name" {{ in_array($value->id, $role1) ? "checked='checked'" : "" }} name="enfermedades[]" type="checkbox" value="{{$value->id}}">
                 {{ $value->nombre}}
               </label>
         @endforeach
@@ -170,7 +173,7 @@
   </div>
 
 </div>
-        {!! Form::close() !!}
+        </form>
 
 
 

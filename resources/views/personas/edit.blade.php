@@ -22,32 +22,34 @@
         </div>
     @endif
 
-    {!! Form::model($persona, ['method' => 'PATCH','route' => ['personas.update', $persona->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('personas.update', $persona->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Ci:</strong>
-                {!! Form::text('ci', null, array('placeholder' => 'ci','class' => 'form-control')) !!}
+                <input placeholder="ci" class="form-control" name="ci" type="text">
             </div>
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'nombre','class' => 'form-control')) !!}
+                <input placeholder="nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {!! Form::text('apellido', null, array('placeholder' => 'apellido','class' => 'form-control')) !!}
+                <input placeholder="apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefono:</strong>
-                {!! Form::text('telefono', null, array('placeholder' => 'telefono','class' => 'form-control')) !!}
+                <input placeholder="telefono" class="form-control" name="telefono" type="text">
             </div>
         </div>
 
@@ -56,18 +58,21 @@
         <div class="form-inline" id="groupSF">
             <div class="form-group" id="fechaCreate">
                 <strong>Fecha de Nacimiento:</strong>
-                {!! Form::date('fecha_nacimiento' , \Carbon\Carbon::now())!!}
+                <input name="fecha_nacimiento" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
             </div>
             <div class="form-group">
-                {!! Form::label('Sexo: ') !!}
-                {!! Form::select('sexo', ['M' => 'Masculino', 'F' => 'Femenino'], null, ['placeholder' => 'sexo']) !!}
+                <label for="sexo"><strong>Sexo</strong></label>
+                <select class="form-control" name="sexo" id="sexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                </select>
             </div>
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Direccion:</strong>
-                {!! Form::text('direccion', null, array('placeholder' => 'direccion','class' => 'form-control')) !!}
+                <input placeholder="direccion" class="form-control" name="direccion" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -114,7 +119,7 @@
             @if($persona->tipo=='n')
                 <div class="form-group">
                     <strong>Numero de hijos:</strong>
-                    {!! Form::text('numero_hijos', null, array('placeholder' => 'numero_hijos','class' => 'form-control')) !!}
+                    <input placeholder="numero_hijos" class="form-control" name="numero_hijos" type="text">
 
                 </div>
             @endif
@@ -124,7 +129,7 @@
             @if($persona->tipo=='n')
                 <div class="form-group">
                     <strong>Numero de Vehiculos:</strong>
-                    {!! Form::text('numero_vehiculos', null, array('placeholder' => 'numero_vehiculos','class' => 'form-control')) !!}
+                    <input placeholder="numero_vehiculos" class="form-control" name="numero_vehiculos" type="text">
                 </div>
             @endif
         </div>
@@ -145,7 +150,7 @@
             @if($persona->tipo=='j')
                 <div class="form-group">
                     <strong>NIT:</strong>
-                    {!! Form::text('nit', null, array('placeholder' => 'nit','class' => 'form-control')) !!}
+                    <input placeholder="nit" class="form-control" name="nit" type="text">
                 </div>
             @endif
         </div>
@@ -153,7 +158,7 @@
             @if($persona->tipo=='j')
                 <div class="form-group">
                     <strong>Razon Social:</strong>
-                    {!! Form::text('razon_social', null, array('placeholder' => 'razon_social','class' => 'form-control')) !!}
+                    <input placeholder="razon_social" class="form-control" name="razon_social" type="text">
                 </div>
             @endif
         </div>
@@ -161,7 +166,7 @@
             @if($persona->tipo=='j')
                 <div class="form-group">
                     <strong>Fecha de constitucion:</strong>
-                    {!! Form::date('fecha_constitucion', \Carbon\Carbon::now()) !!}
+                    <input name="fecha_constitucion" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
                 </div>
             @endif
         </div>
@@ -169,7 +174,7 @@
             @if($persona->tipo=='j')
                 <div class="form-group">
                     <strong>Nombre comercial:</strong>
-                    {!! Form::text('nombre_comercial', null, array('placeholder' => 'nombre_comercial','class' => 'form-control')) !!}
+                    <input placeholder="nombre_comercial" class="form-control" name="nombre_comercial" type="text">
                 </div>
             @endif
         </div>
@@ -177,8 +182,11 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             @if($persona->tipo=='j')
                 <div class="form-group">
-                    {!! Form::label('Tipo Empresa: ') !!}
-                    {!! Form::select('tipo_empresa', ['S.A.' => 'S.A.', 'S.R.L.' => 'S.R.L'], null, ['placeholder' => 'tipo_empresa']) !!}
+                    <label for="Tipo_Empresa"><strong>Sexo</strong></label>
+                    <select class="form-control" name="tipo_empresa" id="Tipo_Empresa">
+                        <option value="S.A">S.A.</option>
+                        <option value="S.R.L">S.R.L.</option>
+                    </select>
                 </div>
             @endif
         </div>
@@ -186,7 +194,7 @@
             @if($persona->tipo=='j')
                 <div class="form-group">
                     <strong>Fecha de Vencimiento Poder:</strong>
-                    {!! Form::date('vencimiento_poder', \Carbon\Carbon::now()) !!}
+                    <input name="vencimiento_poder" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
                 </div>
             @endif
         </div>
@@ -208,7 +216,7 @@
     </div>
 
 
-    {!! Form::close() !!}
+</form>
 
 
 @endsection

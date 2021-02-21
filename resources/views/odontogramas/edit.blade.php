@@ -12,7 +12,9 @@
         </div>
     </div>
 <center>
-    {!! Form::model($odontograma, ['method' => 'PATCH','route' => ['odontogramas.update', $odontograma->id]]) !!}
+    <form method="POST" action="{{route('odontogramas.update', $odontograma->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
 <div class="center">
     <img src="{{asset('imagenes/odonto1.jpg')}}" alt="Odontograma" width="1000" height="200">
     <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6" style="min-width:500px;height:150px" >
@@ -21,7 +23,7 @@
           <div class="form-group">
           <ul class="list-unstyled">
                 @foreach($diente as $value)
-                    <label>{{ Form::checkbox('dientes[]', $value->id, in_array($value->id, $piezadental) ? true : false, array('class' => 'name')) }}
+                    <label><input class="name" {{ in_array($value->id, $piezadental) ? "checked='checked'" : "", $value->id }} name="dientes[]" type="checkbox" value="{{$value->id}}">
                         {{ $value->nombre}}</label>
                 @endforeach
               </ul>
@@ -33,5 +35,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

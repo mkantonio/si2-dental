@@ -12,19 +12,21 @@
             </div>
         </div>
     </div>
-    {!! Form::model($padecimiento, ['method' => 'PATCH','route' => ['padecimientos.update', $padecimiento->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('padecimientos.update', $padecimiento->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                      {!! Form::text('nombre', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                    <input placeholder="name" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripcion:</strong>
-                  {!! Form::text('descripcion', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="name" class="form-control" name="descripcion" type="text">
             </div>
         </div>
 
@@ -35,7 +37,7 @@
         </div>
       </div>
 
-        {!! Form::close() !!}
+    </form>
 
 
 

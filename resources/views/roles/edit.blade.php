@@ -21,18 +21,20 @@
             </ul>
         </div>
     @endif
-    {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+    <form method="POST" action="{{route('roles.update', $role->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {!! Form::text('display_name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <input placeholder="Name" class="form-control" name="display_name" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control','style'=>'height:100px')) !!}
+                <textarea placeholder="Description" class="form-control" name="description" style='height:100px'></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,8 +42,9 @@
                 <strong>Permission:</strong>
                 <br/>
                 @foreach($permission as $value)
-                    <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                        {{ $value->name}}</label>
+                    <label><input class="name" {{ in_array($value->id, $rolePermissions) ? "checked='checked'" : "", $value->id }} name="permission[]" type="checkbox" value="{{$value->id}}">
+                        {{ $value->name}}
+                    </label>
                     <br/>
                 @endforeach
             </div>
@@ -50,5 +53,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

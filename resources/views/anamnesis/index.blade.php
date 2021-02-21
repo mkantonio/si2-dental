@@ -35,9 +35,11 @@
                 <td>
                     <a class="btn btn-info" style="min-width: 35px;height: 35px"href="
                     {{ route('anamnesis.edit',$piv->id_a) }}"><i class="fa fa-edit"></i>Editar</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['anamnesis.destroy', $piv->id_a],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('anamnesis.destroy', $piv->id_a) }}" method="POST" style='display:inline'>   
+                        @csrf
+                        @method('DELETE')      
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

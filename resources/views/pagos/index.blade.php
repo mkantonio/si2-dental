@@ -40,9 +40,11 @@
                 <td>
                     <a class="btn btn-success" style="min-width: 35px;height: 35px"href="
                     {{ route('pagos.edit',$piv->id) }}"><i class="fa fa-edit"></i>Editar</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['pagos.destroy', $piv->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('pagos.destroy', $piv->id) }}" method="POST" style='display:inline'>   
+                        @csrf
+                        @method('DELETE')      
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'historiales.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('historiales.store')}}" accept-charset="UTF-8">
 
 
       <div class="col-xs-10 col-sm-12 col-md-10">
@@ -56,7 +56,7 @@
                    <div class="form-group">
                      <div class="alert-success">
                        <strong>Esta en tratamiento Medico</strong>
-                      {!! Form::text('pregunta1', null, array('placeholder' => 'Que Tratamiento es?','class' => 'form-control')) !!}
+                      <textarea placeholder="Que Tratamiento es?" class="form-control" name="pregunta1" ></textarea>
                    </div>
                  </div>
                </div>
@@ -149,7 +149,7 @@
                    <div class="form-group">
                      <div class="alert-success">
                        <strong>Descripcion del Paciente:</strong>
-                       {!! Form::textarea('descripcion', null, array('placeholder' => 'Descripcion','class' => 'form-control','rows="4" cols="40"')) !!}
+                       <textarea placeholder="Descripcion" class="form-control" name="descripcion" rows="4" cols="40" ></textarea>
                    </div>
                  </div>
                </div>
@@ -163,7 +163,7 @@
                   <ul class="list-unstyled">
                   @foreach($enfermedades as $enfermedad)
                     <label>
-                      {{ Form::checkbox('enfermedades[]', $enfermedad->id, null) }} {{ $enfermedad->nombre}}
+                      <input name="enfermedades[]" type="checkbox" value="{{$enfermedad->id}}"> {{$enfermedad->nombre}}
                     </label>
                   @endforeach
                   </ul>
@@ -181,7 +181,7 @@
 
     </div>
 
-    {!! Form::close() !!}
+    </form>
 
 
 @endsection

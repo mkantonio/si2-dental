@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
+
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Odontologo;
 use App\Models\Role;
-use DB;
-use Hash;
+//use DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -22,12 +23,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //$data = User::orderBy('id','DESC')->get();
-        $data = DB::table('users')
-            ->join('role_user','users.id','=','role_user.user_id')
-            ->join('roles','role_user.role_id','=','roles.id')
-            ->select('users.name','users.email','users.id','roles.name as nombrerole')
-            ->get();
+        $data = User::orderBy('id','DESC')->get();
+//        $data = DB::table('users')
+//            ->join('role_user','users.id','=','role_user.user_id')
+//            ->join('roles','role_user.role_id','=','roles.id')
+//            ->select('users.name','users.email','users.id','roles.name as nombrerole')
+//            ->get();/
+
         return view('users.index',compact('data'));
 
     }
@@ -39,7 +41,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('display_name','id');
+        $roles = Role::all();
+//        dd($roles);
+//        die();
         $odontologos=DB::table('persona as p')
             ->join('odontologo as e', 'p.id' , '=', 'e.id')
             ->select('p.nombre','p.apellido','e.email')
@@ -103,8 +107,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::pluck('display_name','id');
-        $userRole = $user->roles->pluck('id','id')->toArray();
+        $roles =  Role::all();
+        $userRole = $user->getRoleNames();
         return view('users.edit',compact('user','roles','userRole'));
     }
 
@@ -125,21 +129,21 @@ class UserController extends Controller
         ]);
 
         $input = $request->all();
-        if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));
-        }
+//        if(!empty($input['password'])){
+//            $input['password'] = Hash::make($input['password']);
+//        }else{
+//            $input = array_except($input,array('password'));
+//        }
 
         $user = User::find($id);
         $user->update($input);
         $user->save();
-        DB::table('role_user')->where('user_id',$id)->delete();
+        //DB::table('role_user')->where('user_id',$id)->delete();
 
 
-        foreach ($request->input('roles') as $key => $value) {
-            $user->attachRole($value);
-        }
+//        foreach ($request->input('roles') as $key => $value) {
+//            $user->attachRole($value);
+//        }
          BitacoraController::store ($request,"Usuario Modificado");
         return redirect()->route('users.index')
             ->with('success','User actualizado exitosamente');

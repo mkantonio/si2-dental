@@ -22,7 +22,9 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'servicios.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('servicios.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
 
 
       <div class="col-xs-10 col-sm-12 col-md-10">
@@ -87,7 +89,7 @@
         </div>
 
 
-    {!! Form::close() !!}
+    </form>
 
 
 @endsection

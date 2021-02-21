@@ -46,9 +46,11 @@
                 <td>
                     <a class="btn btn-app"  style="min-width: 60px;height: 60px"  href="{{ route('personas.show',$persona->id) }}"><i class="fa  fa-info"></i>Show</a>
                     <a class="btn btn-app" style="min-width: 60px;height: 60px"href="{{ route('personas.edit',$persona->id) }}"><i class="fa fa-edit"></i>Edit</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['personas.destroy', $persona->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('personas.destroy', $persona->id) }}" method="POST" style='display:inline'>   
+                        @csrf
+                        @method('DELETE')      
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

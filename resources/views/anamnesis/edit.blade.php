@@ -12,7 +12,9 @@
         </div>
     </div>
 
-    {!! Form::model($citas, ['method' => 'PATCH','route' => ['anamnesis.update', $anamnesis->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('anamnesis.update', $anamnesis->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+      @csrf
+      @method('PATCH')
   <div class="row">
     <div class="col-xs-10 col-sm-12 col-md-12">
         <div class="form-group">
@@ -60,7 +62,7 @@
             <div class="form-group">
               <div class="alert-success">
                 <strong>Esta en tratamiento Medico</strong>
-               {!! Form::text('pregunta1', null, array('placeholder' => 'Que Tratamiento es?','class' => 'form-control')) !!}
+               <textarea placeholder="Que Tratamiento es?" class="form-control" name="pregunta1" ></textarea>
             </div>
           </div>
           </div>
@@ -218,7 +220,7 @@
     <div class="form-group">
       <div class="alert-success">
         <strong>Descripcion del Paciente:</strong>
-        {!! Form::textarea('descripcion', null, array('placeholder' => 'Descripcion','class' => 'form-control','rows="4" cols="40"')) !!}
+        <textarea placeholder="Descripcion" class="form-control" name="descripcion" rows="4" cols="40" ></textarea>
     </div>
    </div>
 </div>
@@ -229,9 +231,10 @@
       <div class="form-group">
       <ul class="list-unstyled">
         @foreach($enfermedades as $value)
-            <label>{{ Form::checkbox('enfermedades[]', $value->id, in_array($value->id, $role1) ? true : false, array('class' => 'name')) }}
-                {{ $value->nombre}}
-              </label>
+        <label>
+            <input class="name" {{ in_array($value->id, $role1) ? "checked='checked'" : "" }} name="enfermedades[]" type="checkbox" value="{{$value->id}}">
+              {{ $value->nombre}}
+        </label>
         @endforeach
       </ul>
       </div>
@@ -242,7 +245,6 @@
   </div>
 
 </div>
-        {!! Form::close() !!}
 
 
 

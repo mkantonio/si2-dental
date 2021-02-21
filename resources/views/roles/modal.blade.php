@@ -1,7 +1,10 @@
 <div class="modal modal-danger fade in" aria-hidden="true"
      role="dialog" tabindex="-1" id="modal-delete-{{$role->id}}"
      style="(display: block; padding-right: 17px;)">
-    {{Form::Open(array('action'=>array('RoleController@destroy',$role->id),'method'=>'delete'))}}
+{{--    {{Form::Open(array('action'=>array('RoleController@destroy',$role->id),'method'=>'delete'))}}--}}
+    <form action="{{ route('roles.destroy', $persona->id) }}" method="POST">
+        @csrf
+        @method('DELETE')
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

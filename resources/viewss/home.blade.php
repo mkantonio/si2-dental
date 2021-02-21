@@ -16,6 +16,7 @@
                     @endrole
 
                     {!! Form::open(['url' => 'foo/bar']) !!}
+
                     holaaa
                     {!! Form::close() !!}
                 </div>

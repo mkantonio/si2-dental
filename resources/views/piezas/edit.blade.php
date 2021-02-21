@@ -2,7 +2,9 @@
 @section('content')
 <center>
 <h3>Nuevo Odontograma</h3>
-  {!! Form::model($prueba, ['method' => 'PATCH','route' => ['piezas.update', $prueba->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('piezas.update', $prueba->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
 <div class="row">
 <div class="container">
   <img src="{{asset('imagenes/odonto1.jpg')}}" alt="Odontograma" width="1000" height="200">
@@ -14,7 +16,7 @@
           <div class="form-group">
           <ul class="list-unstyled">
             @foreach($prueba as $value)
-                <label>{{ Form::checkbox('prueba[]') }}
+                <label><input name="prueba[]" type="checkbox">
                     {{ $value->id}}
                   </label>
             @endforeach
@@ -137,7 +139,7 @@
     </div>
 </div>
 </div>
-{!! Form::close() !!}
+</form>
 
 
 @endsection

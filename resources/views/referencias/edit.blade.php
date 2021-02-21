@@ -21,31 +21,33 @@
             </ul>
         </div>
     @endif
-    {!! Form::model($referencia, ['method' => 'PATCH','route' => ['referencias.update', $referencia->id]]) !!}
+    <form method="POST" action="{{route('referencias.update', $referencia->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'nombre','class' => 'form-control')) !!}
+                <input placeholder="nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {!! Form::text('apellido', null, array('placeholder' => 'apellido','class' => 'form-control')) !!}
+                <input placeholder="apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefono:</strong>
-                {!! Form::text('telefono', null, array('placeholder' => 'telefono','class' => 'form-control')) !!}
+                <input placeholder="telefono" class="form-control" name="telefono" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Relacion:</strong>
-                {!! Form::text('relacion', null, array('placeholder' => 'relacion','class' => 'form-control')) !!}
+                <input placeholder="relacion" class="form-control" name="relacion" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,11 +58,11 @@
                     @endforeach
                 </select>
             </div>
-       
+
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

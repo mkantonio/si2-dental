@@ -12,12 +12,14 @@
             </div>
         </div>
     </div>
-    {!! Form::model($persona, ['method' => 'PATCH','route' => ['pacientes.update', $persona->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('pacientes.update', $persona->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
     <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                   <strong>Ci:</strong>
-                  {!! Form::text('ci', null, array('placeholder' => 'ci','class' => 'form-control')) !!}
+                  <input placeholder="ci" class="form-control" name="ci" type="text">
               </div>
             </div>
 
@@ -25,26 +27,26 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                      {!! Form::text('nombre', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                  {!! Form::text('apellido', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Sexo:</strong>
-          {!! Form::text('sexo', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="sexo" class="form-control" name="sexo" type="text">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Direccion:</strong>
-              {!! Form::text('direccion', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+                <input placeholder="direccion" class="form-control" name="direccion" type="text">
             </div>
         </div>
 
@@ -54,7 +56,7 @@
         </div>
       </div>
 
-        {!! Form::close() !!}
+        </form>
 
 
 

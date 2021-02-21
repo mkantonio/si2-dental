@@ -37,9 +37,11 @@
                 <td>
                     <a class="btn btn-info" href="{{ route('referencias.show',$referencia->id) }}">Mostrar</a>
                     <a class="btn btn-primary" href="{{ route('referencias.edit',$referencia->id) }}">Editar</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['referencias.destroy', $referencia->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('referencias.destroy', $referencia->id) }}" method="POST" style='display:inline'>   
+                        @csrf
+                        @method('DELETE')      
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

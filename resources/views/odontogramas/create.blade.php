@@ -2,7 +2,9 @@
 @section('content')
 <center>
 <h3>Nuevo Odontograma</h3>
-{!! Form::open(array('route' => 'odontogramas.store','method'=>'POST')) !!}
+<form method="POST" action="{{route('odontogramas.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+@csrf
+@method('POST')
   <img src="{{asset('imagenes/odonto1.jpg')}}" alt="Odontograma" width="1000" height="200">
   <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6" style="min-width:500px;height:150px" >
       <div class="alert alert-success">
@@ -11,7 +13,7 @@
         <ul class="list-unstyled">
         @foreach($dientes as $dental)
           <label>
-            {{ Form::checkbox('dientes[]', $dental->id, null) }} {{ $dental->nombre}}
+            <input name="dientes[]" type="checkbox" value="{{$dental->id}}"> {{$dental->nombre}}
           </label>
         @endforeach
         </ul>
@@ -25,7 +27,7 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+
 
 
 @endsection

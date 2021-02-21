@@ -38,10 +38,11 @@
                 <td>
 
                   <a class="btn btn-primary" style="min-width: 35px;height: 35px"href="{{ route('permissions.edit',$ocupacion->id) }}"><i class="fa fa-edit"></i>Edit</a>
-                  {!! Form::open(['method' => 'DELETE','route' => ['permissions.destroy', $ocupacion->id],'style'=>'display:inline']) !!}
-                  {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                  {!! Form::close() !!}
-
+                  <form action="{{ route('permissions.destroy', $ocupacion->id) }}" method="POST" style='display:inline'>   
+                    @csrf
+                    @method('DELETE')      
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
                 </td>
             </tr>
         @endforeach

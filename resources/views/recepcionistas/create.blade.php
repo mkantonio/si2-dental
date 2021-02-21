@@ -22,19 +22,21 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'recepcionistas.store','method'=>'POST')) !!}
+      <form method="POST" action="{{ route('recepcionistas.store')}}" accept-charset="UTF-8">
+          @csrf
+          @method('POST')
     <div class="row">
 
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
+                <input placeholder="Nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {!! Form::text('apellido', null, array('placeholder' => 'Apellido','class' => 'form-control')) !!}
+                <input placeholder="Apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
@@ -57,12 +59,12 @@
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Direccion:</strong>
-                {!! Form::text('direccion', null, array('placeholder' => 'Direccion','class' => 'form-control')) !!}
+                <input placeholder="Direccion" class="form-control" name="direccion" type="text">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <div id="mainForm"  name="mainForm" class="form-group">
+          <div id="mainForm" name="mainForm" class="form-group">
               <label>
                   recepcionista
                   <input type="radio" id="recepcionista" name="recepcionista"   onclick="clickrecepcionista()"   value="recepcionista"   class="flat-red">
@@ -75,7 +77,7 @@
               <div class="col-xs-12 col-sm-10 col-md-10">
                   <div class="form-group">
                       <strong>Email:</strong>
-                      {!! Form::text('email2', null, array('placeholder' => 'email','class' => 'form-control')) !!}
+                      <input placeholder="email" class="form-control" name="email2" type="text">
                   </div>
               </div>
           </div>
@@ -89,7 +91,7 @@
 
     </div>
 </div>
-    {!! Form::close() !!}
+    </form>
 
 
 @endsection

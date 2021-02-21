@@ -23,7 +23,9 @@
         </div>
     @endif
 <div class="container">
-    {!! Form::open(array('route' => 'citas.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('citas.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
 
     <div class="row">
 
@@ -43,26 +45,26 @@
       <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
               <strong>Agenda Del Odontologo:</strong>
-              {!! Form::text('agenda_id', null, array('placeholder' => 'Agenda del Odontologo','class' => 'form-control')) !!}
+              <input placeholder="Agenda del Odontologo" class="form-control" name="agenda_id" type="text">
           </div>
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-10">
            <div class="form-group" id="fechaCreate">
                <strong>Motivo de la visita:</strong>
-                  {!! Form::text('descripcion', null, array('placeholder' => 'Descripcion','class' => 'form-control')) !!}
+                  <input placeholder="Descripcion" class="form-control" name="descripcion" type="text">
            </div>
        </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group" id="fechaCreate">
                   <strong>Hora de La Cita:</strong>
-                  {!! Form::time('hora', \Carbon\Carbon::now()) !!}
+                  <input name="hora" type="time" value="{{ \Carbon\Carbon::now()->toTimeString() }}">
               </div>
           </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group" id="fechaCreate">
                 <strong>Fecha de La Cita:</strong>
-                {!! Form::date('fecha', \Carbon\Carbon::now()) !!}
+                <input name="fecha" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
             </div>
         </div>
 
@@ -75,7 +77,7 @@
 
     </div>
 </div>
-    {!! Form::close() !!}
+
 
 
 @endsection

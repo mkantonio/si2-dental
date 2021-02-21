@@ -13,7 +13,7 @@ class Paciente extends Model
 	protected $fillable = ['id','fecha_nacimiento'];
 	protected $primaryKey = 'id';
  
-	use FormAccessible;
+	//use FormAccessible;
     public function getDateOfBirthAttribute($value)
     {
         return Carbon::parse($value)->format('m/d/Y');

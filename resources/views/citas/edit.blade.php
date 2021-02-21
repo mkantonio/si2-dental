@@ -11,7 +11,9 @@
             </div>
         </div>
     </div>
-    {!! Form::model($cita, ['method' => 'PATCH','route' => ['citas.update', $cita->id],'files'=>'true']) !!}
+    <form method="POST" action="{{route('citas.update', $citas->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
   <div class="row">
     <div class="col-xs-10 col-sm-12 col-md-10">
         <div class="form-group">
@@ -29,25 +31,25 @@
     <div class="col-xs-12 col-sm-12 col-md-10">
          <div class="form-group" id="fechaCreate">
              <strong>Motivo de la visita:</strong>
-                {!! Form::text('descripcion', null, array('placeholder' => 'Descripcion','class' => 'form-control')) !!}
+                 <textarea placeholder="Descripcion" class="form-control" name="descripcion" ></textarea>
          </div>
      </div>
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group" id="fechaCreate">
                 <strong>Hora de La Cita:</strong>
-                {!! Form::time('hora', \Carbon\Carbon::now()) !!}
+                <input name="hora" type="time" value="{{ \Carbon\Carbon::now()->toTimeString() }}">
             </div>
         </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group" id="fechaCreate">
               <strong>Fecha de La Cita:</strong>
-              {!! Form::date('fecha', \Carbon\Carbon::now()) !!}
+              <input name="fecha" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
           </div>
       </div>
       <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
           <div class="form-group">
               <strong>Agenda Del Odontologo:</strong>
-              {!! Form::text('agenda_id', null, array('placeholder' => 'Agenda del Odontologo','class' => 'form-control')) !!}
+              <input placeholder="Agenda del Odontologo" class="form-control" name="agenda_id" type="text">
           </div>
       </div>
 
@@ -57,7 +59,7 @@
         </div>
       </div>
 
-        {!! Form::close() !!}
+    </form>
 
 
 

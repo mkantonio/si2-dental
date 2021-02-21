@@ -21,19 +21,19 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'pacientes.store','method'=>'POST')) !!}
+    <form method="POST" action="{{ route('pacientes.store')}}" accept-charset="UTF-8">
     <div class="row">
 
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {!! Form::text('nombre', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
+                <input placeholder="Nombre" class="form-control" name="nombre" type="text">
             </div>
         </div>
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {!! Form::text('apellido', null, array('placeholder' => 'Apellido','class' => 'form-control')) !!}
+                <input placeholder="Apellido" class="form-control" name="apellido" type="text">
             </div>
         </div>
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
@@ -56,7 +56,7 @@
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Direccion:</strong>
-                {!! Form::text('direccion', null, array('placeholder' => 'Direccion','class' => 'form-control')) !!}
+                <textarea placeholder="Direccion" class="form-control" name="direccion" ></textarea>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group" id="fechaCreate">
                     <strong>Fecha de Nacimiento:</strong>
-                    {!! Form::date('fecha', \Carbon\Carbon::now()) !!}
+                    <input name="fecha" type="date" value="{{ \Carbon\Carbon::now()->toDateString() }}">
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
 
     </div>
 
-    {!! Form::close() !!}
+
 
 
 @endsection
