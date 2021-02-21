@@ -1,64 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="eed186d7-cc07-4278-8c29-255e12ed76f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Paciente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/anamnesis/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/anamnesis/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/anamnesis/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/anamnesis/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/citas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/citas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/citas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/citas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cuotas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cuotas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/especialidades/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/especialidades/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/especialidades/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/especialidades/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/especialidades/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/especialidades/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/historiales/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/historiales/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/historiales/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/historiales/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+    <list default="true" id="eed186d7-cc07-4278-8c29-255e12ed76f4" name="Default Changelist" comment="update gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/content/aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/content/aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/content/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/content/script.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontogramas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontogramas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontogramas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontogramas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontogramas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontogramas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pacientes/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pacientes/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pacientes/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pacientes/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pacientes/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pacientes/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pacientes/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pacientes/modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/padecimientos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/padecimientos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/padecimientos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/padecimientos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/padecimientos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/padecimientos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pagos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pagos/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pagos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pagos/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pagos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pagos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/permissions/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/permissions/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/permissions/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/permissions/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/permissions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/permissions/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/personas/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/personas/modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/piezas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/piezas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recepcionistas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recepcionistas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recepcionistas/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recepcionistas/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recepcionistas/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recepcionistas/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/referencias/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/referencias/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/referencias/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/referencias/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/referencias/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/referencias/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/servicios/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/servicios/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/modal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/viewss/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/viewss/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,12 +182,35 @@
       <updated>1613646262784</updated>
       <workItem from="1613646265749" duration="892000" />
       <workItem from="1613751988049" duration="10682000" />
-      <workItem from="1613832548249" duration="21592000" />
+      <workItem from="1613832548249" duration="22503000" />
     </task>
+    <task id="LOCAL-00001" summary="update gitignore">
+      <created>1613922462881</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613922462881</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="update gitignore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="461" y="165" key="SettingsEditor" timestamp="1613646731143">
