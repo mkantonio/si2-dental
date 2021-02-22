@@ -3,15 +3,12 @@
 @section('content')
 <div class="limiter">
   <div class="container-login100">
-    <ul class="nav navbar-nav navbar-right">
+{{--     <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
         @if (Auth::guest())
-            <li><a href="{{ url('/login') }}">Login</a></li>
+            <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
             <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
         @else
-
-
-
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -32,7 +29,7 @@
                 </ul>
             </li>
         @endif
-    </ul>
+    </ul> --}}
     <div class="wrap-login100">
       <div class="login100-pic js-tilt" data-tilt>
         <img src="{{asset('Prueba/images/schone-tandachtergrond_1270-86.jpg')}}" alt="IMG">
@@ -101,3 +98,12 @@
 
 @endsection
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    // var idapp = document.getElementById("app");
+    // idapp.removeChild(idapp.childNodes[1]);
+
+
+}); 
+</script>

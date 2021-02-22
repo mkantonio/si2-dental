@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Tratamiento;
 use App\Models\Servicio;
 use App\Models\DetalleServicio;
@@ -72,10 +72,11 @@ class ServicioController extends Controller
         $detalle->tratamiento_id=$request->input('id_trata');
         $detalle->cita_id=$request->input('id_cita');
         $detalle->odontologo_id=$request->input('id');
-        $detalle->save();
+        $detalle->save();  
+        dd($detalle); die();
 
 
-        BitacoraController::store ($request,"Registrar Historial");
+        BitacoraController::store ($request,"Registro de Servicio");
 
            return redirect()->route('servicios.index')
            ->with('warning','Funcion completada existosamente');

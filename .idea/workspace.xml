@@ -19,9 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eed186d7-cc07-4278-8c29-255e12ed76f4" name="Default Changelist" comment="update links22">
+    <list default="true" id="eed186d7-cc07-4278-8c29-255e12ed76f4" name="Default Changelist" comment="update links aside.blade.php">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/content/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/content/script.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +182,7 @@
       <updated>1613646262784</updated>
       <workItem from="1613646265749" duration="892000" />
       <workItem from="1613751988049" duration="10682000" />
-      <workItem from="1613832548249" duration="22842000" />
+      <workItem from="1613832548249" duration="24248000" />
     </task>
     <task id="LOCAL-00001" summary="update gitignore">
       <created>1613922462881</created>
@@ -220,6 +221,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update gitignore" />
@@ -246,17 +248,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="562" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613761454252" />
-    <state x="493" y="119" width="759" height="801" key="find.popup" timestamp="1613925883679">
+    <state x="493" y="119" width="759" height="801" key="find.popup" timestamp="1613939303594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="493" y="119" width="759" height="801" key="find.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613925883679" />
+    <state x="493" y="119" width="759" height="801" key="find.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613910376536" />
+    <state x="493" y="119" width="759" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613939303594" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1613910523583">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613910523583" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613922876939">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613923269975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613922876939" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613923269975" />
   </component>
 </project>

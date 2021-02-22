@@ -8,7 +8,7 @@
                 <h2>Registro de Servicio </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('historiales.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('servicios.index') }}"> Back</a>
             </div>
         </div>
     </div>
