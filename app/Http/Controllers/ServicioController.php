@@ -26,7 +26,6 @@ class ServicioController extends Controller
         ->where('persona.tipo','=','odontologo')
         ->select('servicio.id','ds.*','tratamiento.nombre as name','cita.id as idcita','persona.nombre as name1','persona.apellido as apelli')
         ->get();
-        dd($servicios); die();
         return view('servicios.index',compact('servicios'));
     }
 
