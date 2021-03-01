@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Cita;
 use App\Models\Persona;
 use App\Models\Paciente;
@@ -22,10 +22,10 @@ class AgendaController extends Controller
     public function index()
     {
       $citas=DB::table('cita')
-      ->join('paciente','cita.id_paciente','=','paciente.id')
+      ->join('paciente','cita.idPacient','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
 
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->select('cita.id','cita.hora','cita.fecha','persona.nombre as nombreP','persona.apellido as apell','cita.descripcion')
       ->get();
        return view('agendas.index',compact('citas'));

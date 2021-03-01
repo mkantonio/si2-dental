@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Cita;
 use App\Models\Paciente;
 use App\Models\Persona;
@@ -18,9 +18,9 @@ class CitaController extends Controller
     public function index()
     {
       $citas=DB::table('cita')
-      ->join('paciente','cita.id_paciente','=','paciente.id')
+      ->join('paciente','cita.idPacient','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->select('cita.id','cita.hora','cita.fecha','persona.nombre as nombreP','persona.apellido as apell')
       ->get();
        return view('citas.index',compact('citas'));
@@ -54,7 +54,7 @@ class CitaController extends Controller
       $citas->hora=$request->input('hora');
       $citas ->fecha = $request->input('fecha');
       $citas ->agenda_id = $request->input('agenda_id');
-      $citas ->id_paciente = $request->input('id');
+      $citas ->idPacient = $request->input('id');
       $citas ->descripcion = $request->input('descripcion');
       $citas ->save();
 
@@ -75,7 +75,7 @@ class CitaController extends Controller
       $personas=DB::table('persona as p')
          ->select('p.id','p.nombre','p.apellido')
          ->join('paciente','paciente.id','=','p.id')
-         ->join('cita','cita.id_paciente','=','paciente.id')
+         ->join('cita','cita.idPacient','=','paciente.id')
          ->where('cita.id','=',$id)
          ->get();
         $cita = Cita::find($id);
@@ -94,7 +94,7 @@ class CitaController extends Controller
       $personas=DB::table('persona as p')
          ->select('p.id','p.nombre')
          ->join('paciente','paciente.id','=','p.id')
-         ->join('cita','cita.id_paciente','=','paciente.id')
+         ->join('cita','cita.idPacient','=','paciente.id')
          ->where('cita.id','=',$id)
          ->get();
       $cita = Cita::find($id);
@@ -115,7 +115,7 @@ class CitaController extends Controller
       $citas->hora=$request->input('hora');
       $citas ->fecha = $request->input('fecha');
       $citas ->agenda_id = $request->input('agenda_id');
-      $citas ->id_paciente = $request->input('id');
+      $citas ->idPacient = $request->input('id');
       $citas ->descripcion = $request->input('descripcion');
       $citas ->save();
 

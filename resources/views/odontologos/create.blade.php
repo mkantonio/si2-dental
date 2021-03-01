@@ -22,27 +22,34 @@
             </ul>
         </div>
     @endif
+    @if ($message = Session::get('error'))
+    <div class="alert alert-error">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
     <form method="POST" action="{{ route('odontologos.store')}}" accept-charset="UTF-8">
+        @csrf
+        @method('POST')
     <div class="row">
 
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                <input placeholder="Nombre" class="form-control" name="nombre" type="text">
+                <input placeholder="Nombre" class="form-control" name="Nombre" type="text">
             </div>
         </div>
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                <input placeholder="Apellido" class="form-control" name="apellido" type="text">
+                <input placeholder="Apellido" class="form-control" name="Apellido" type="text">
             </div>
         </div>
         <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Sexo:</strong>
-                <select name="sexo" class="form-control">
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
+                <select name="Sexo" class="form-control">
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
                 </select>
             </div>
         </div>
@@ -50,14 +57,14 @@
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Cedula de Identidad:</strong>
-                <input type="text" name="ci" class="form-control" placeholder="ci..">
+                <input type="number" name="CI" class="form-control" placeholder="ci..">
             </div>
         </div>
 
         <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Direccion:</strong>
-                <input placeholder="Direccion" class="form-control" name="direccion" type="text">
+                <input placeholder="Direccion" class="form-control" name="Direccion" type="text">
             </div>
         </div>
 
@@ -90,7 +97,7 @@
         @foreach($especialidades as $especialidad)
         <li>
           <label>
-            <input name="especialidades[]" type="checkbox" value="{{$especialidad->id}}"> {{$especialidad->nombre}}
+            <input name="especialidades[]" type="checkbox" value="{{$especialidad->id}}"> {{$especialidad->Nombre}}
           </label>
         </li>
         @endforeach

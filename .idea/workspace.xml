@@ -20,9 +20,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eed186d7-cc07-4278-8c29-255e12ed76f4" name="Default Changelist" comment="update links aside.blade.php">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/consultorio-dental.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/consultorio-dental.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgendaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgendaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BitacoraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BitacoraController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CitaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CitaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OcupacionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OcupacionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OdontologoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OdontologoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/anamnesisController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/anamnesisController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/cuotaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/cuotaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/especialidadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/especialidadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/historialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/historialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/planController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/planController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Bitacora.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Bitacora.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Cita.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cita.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/DetalleCita.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/DetalleCita.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/DetalleEspecialidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/DetalleEspecialidad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/DetalleServicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/DetalleServicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Odontologo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Odontologo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PlanPago.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PlanPago.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/bitacoras/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bitacoras/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/content/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/content/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/odontologos/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/odontologos/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +175,16 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
     </include_path>
   </component>
   <component name="ProjectId" id="1oeTsMGgmml044BBxU5ps9zcSo3" />
@@ -183,6 +222,7 @@
       <workItem from="1613646265749" duration="892000" />
       <workItem from="1613751988049" duration="10682000" />
       <workItem from="1613832548249" duration="24248000" />
+      <workItem from="1614493546165" duration="5732000" />
     </task>
     <task id="LOCAL-00001" summary="update gitignore">
       <created>1613922462881</created>
@@ -257,9 +297,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613910523583" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613923269975">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1614493784371">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1613923269975" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1614493784371" />
   </component>
 </project>

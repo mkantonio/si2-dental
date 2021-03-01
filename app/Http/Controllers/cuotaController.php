@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\PlanPago;
 class cuotaController extends Controller
 {
@@ -17,7 +17,7 @@ class cuotaController extends Controller
       $detalle=DB::table('plan_pago')
       ->join('paciente','paciente.id','=','plan_pago.paciente_id')
       ->join('persona','persona.id','=','paciente.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->select('plan_pago.id','persona.nombre as name','persona.apellido as name1','plan_pago.monto_total')
       ->get();
       return view('cuotas.index',compact('detalle'));

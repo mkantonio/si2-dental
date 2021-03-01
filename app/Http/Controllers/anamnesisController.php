@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Anamnesis;
 use App\Models\Padecimiento;
 use App\Models\Historial;
@@ -20,7 +20,7 @@ class anamnesisController extends Controller
       ->join('historial','historial.anamnesis_id','=','anamnesis.id')
       ->join('paciente','historial.paciente_id','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->select('anamnesis.id as id_a','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha')
       ->get();
 
@@ -72,7 +72,7 @@ class anamnesisController extends Controller
       ->join('historial','historial.anamnesis_id','=','anamnesis.id')
       ->join('paciente','historial.paciente_id','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->where('anamnesis.id','=',$id)
       ->select('historial.id','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha',
       'persona.sexo as sex','persona.direccion as dir','anamnesis.estado as es','anamnesis.descripcion','anamnesis.pregunta1','anamnesis.pregunta2'

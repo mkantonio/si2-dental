@@ -24,10 +24,10 @@
         <!-- User Account: style can be found in dropdown.less -->
       <!--     <li>
               <a href=" route('revisiones.index') ">Notificaciones
-                  @if($count=Auth::user()->notifications->count())
+                  {{-- @if($count=Auth::user()->notifications->count()) --}}
                   <i class="fa fa-bell-o"></i>
-                      <span class="label label-warning">{{$count}}</span>
-                  @endif
+                      {{-- <span class="label label-warning">{{$count}}</span> --}}
+                  {{-- @endif --}}
               </a>
           </li>-->
           <li class="dropdown user user-menu">

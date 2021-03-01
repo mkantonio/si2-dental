@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bitacora;
 use App\Models\Permission;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class BitacoraController extends Controller
 {
@@ -34,6 +34,7 @@ class BitacoraController extends Controller
         $bitacora->hora = date('H:m:s');
         $bitacora->accion=$accion;
         $bitacora->navegador = $request->header('User-Agent');
+        $bitacora->ip = $request->ip();
         $bitacora->url = $request->fullUrl();
         $bitacora->save();
 

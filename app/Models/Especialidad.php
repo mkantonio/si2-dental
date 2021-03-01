@@ -9,7 +9,11 @@ class Especialidad extends Model
 {
   protected $table = "especialidad";
   public $timestamps=false;
-  protected $fillable = ['id','nombre','descripcion'];
+  protected $fillable = ['id', 'IdOdontologo', 'IdEspecialidad'];
   protected $primaryKey = 'id';
+
+  public function especialidad(){
+    return $this->belongsToMany(Especialidad::class,'detalle_especialidad', 'IdEspecialidad', 'IdOdontologo');
+  }
     
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 //use Collective\Html\Eloquent\FormAccessible;
+use App\Models\Odontologo;
 
 class Persona extends Model
 {
@@ -11,7 +12,10 @@ class Persona extends Model
 
     protected $table = "persona";
     public $timestamps=false;
-    protected $fillable = ['id','ci','nombre','apellido','sexo','direccion','tipo'];
+    protected $fillable = ['CI','Nombre','Apellido','Sexo','Direccion','TipoP'];
     protected $primaryKey = 'id';
-   
+
+    public function odontologo(){
+        return $this->hasOne(Odontologo::class, 'TipoP', 'id');
+    }
 }

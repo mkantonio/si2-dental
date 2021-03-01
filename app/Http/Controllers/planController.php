@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\PlanPago;
 class planController extends Controller
 {
@@ -17,7 +17,7 @@ class planController extends Controller
         $detalle=DB::table('plan_pago')
         ->join('paciente','paciente.id','=','plan_pago.paciente_id')
         ->join('persona','persona.id','=','paciente.id')
-        ->where('persona.tipo','=','paciente')
+        ->where('persona.tipoP','=','paciente')
         ->select('plan_pago.id','persona.nombre as name','persona.apellido as name1','plan_pago.monto_total')
         ->get();
         return view('pagos.index',compact('detalle'));
@@ -32,14 +32,14 @@ class planController extends Controller
     {
         $persona=DB::table('paciente')
         ->join('persona','persona.id','=','paciente.id')
-        ->where('persona.tipo','=','paciente')
+        ->where('persona.tipoP','=','paciente')
         ->select('persona.nombre as name','persona.id as id_p','persona.apellido as name1')
         ->get();
 
         $servicio=DB::table('servicio')
-        ->join('detalle_servicio as ds','ds.servicio_id','=','servicio.id')
+        ->join('detalle_servicio as ds','ds.IdServicio','=','servicio.id')
         ->join('tratamiento','tratamiento.id','=','ds.id')
-        ->join('cita','cita.id','=','ds.cita_id')
+        ->join('cita','cita.id','=','ds.IdCita')
         ->select('servicio.id as id_s','tratamiento.costo as tc','tratamiento.nombre as name')
         ->get();
 
@@ -89,7 +89,7 @@ class planController extends Controller
       $plan=DB::table('plan_pago')
       ->join('paciente','paciente.id','=','plan_pago.paciente_id')
       ->join('persona','persona.id','=','paciente.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->where('plan_pago.id','=',$id)
       ->select('plan_pago.id','persona.nombre as name','plan_pago.monto_total as total')
       ->get();

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\Models\Ocupacion;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
 class OcupacionController extends Controller

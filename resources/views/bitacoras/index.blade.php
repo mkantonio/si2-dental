@@ -20,7 +20,7 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Email</th>
-        <th>Navegador</th>
+        <th>IP</th>
         <th>URL</th>
 
         </thead>
@@ -35,7 +35,7 @@
                 <td>{{ $bitacora->fecha}}</td>
                 <td>{{ $bitacora->hora}}</td>
                 <td>{{ $bitacora->email}}</td>
-                <td>{{ $bitacora->navegador}}</td>
+                <td>{{ $bitacora->ip}}</td>
                 <td>{{ $bitacora->url}}</td>
             </tr>
         @endforeach

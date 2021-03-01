@@ -8,7 +8,7 @@ class DetalleCita extends Model
 {
   protected $table = "detalle_cita";
   public $timestamps=false;
-  protected $fillable = ['id','cita_id','hora','fecha'];
+  protected $fillable = ['id','IdCita','hora','fecha'];
   protected $primaryKey = 'id';
 
 }

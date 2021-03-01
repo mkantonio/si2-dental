@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Odontologo;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Especialidad;
 use App\Models\DetalleEspecialidad;
 use App\Models\Bitacora;
- use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
+use App\Http\Requests\OdontologoStoreRequest;
 
 class OdontologoController extends Controller
 {
@@ -24,13 +24,15 @@ class OdontologoController extends Controller
     {
 
 
-        $personas=DB::table('odontologo as o')
-          ->select('p.id','p.ci','p.nombre','p.apellido','p.sexo','p.direccion','p.tipo')
-          ->join('persona as p', 'p.id' , '=', 'o.id')
-          ->where('p.tipo','=','odontologo')
-          ->get();
+        // $personas=DB::table('odontologo as o')
+        //   ->select('p.id','p.ci','p.nombre','p.apellido','p.sexo','p.direccion','p.tipo')
+        //   ->join('persona as p', 'p.id' , '=', 'o.id')
+        //   ->where('p.tipo','=','odontologo')
+        //   ->get();
+        $odontologos = Odontologo::all();
 
-      return view('odontologos.index',compact('personas'));
+
+        return view('odontologos.index', compact('odontologos'));
     }
 
     /**
@@ -40,124 +42,115 @@ class OdontologoController extends Controller
      */
     public function create()
     {
-          $especialidades=Especialidad::get();
-          return view('odontologos.create',compact('especialidades'));
+        $especialidades = Especialidad::all();
+        return view('odontologos.create', compact('especialidades'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OdontologoStoreRequest $request, Persona $persona)
     {
-      $tipo='';
-      $this->validate($request, [
-          'ci' => 'required',
-          'nombre' => 'required',
-          'apellido' => 'required',
-          'sexo' => 'required',
-          'direccion' => 'required',
-      ]);
+        if (!$request->odontologo) {
+            return redirect()->route('odontologos.create')
+                ->with('error', 'Debe especificar que es un odontologo');
+        }
 
-      $persona = new Persona();
-      $persona->ci=$request->input('ci');
-      $persona ->nombre = $request->input('nombre');
-      $persona ->apellido = $request->input('apellido');
-      $persona ->sexo = $request->input('sexo');
-      $persona ->direccion = $request->input('direccion');
-      $persona ->tipo = 'niinguno';
-      $persona ->save();
+        $persona = Persona::create([
+            'CI' => $request->input('CI'),
+            'Nombre' => $request->input('Nombre'),
+            'Apellido' => $request->input('Apellido'),
+            'Sexo' => $request->input('Sexo'),
+            'Direccion' => $request->input('Direccion'),
+            'TipoP' => $request->input('odontologo'),
+        ]);
 
+        $odontologo = Odontologo::create([
+            'Correo' => $request->input('email'),
+            'TipoP' => $persona->id,
+        ]);
+        $especialidadesArray = $request->especialidades;
+        foreach ($especialidadesArray as $especialidad) {
+            $detalle_especialidad = new DetalleEspecialidad();
+            $detalle_especialidad->IdOdontologo = $odontologo->id;
+            $detalle_especialidad->IdEspecialidad = $especialidad;
+            $detalle_especialidad->save();
+        }
 
-      if ($request->odontologo){
+        BitacoraController::store($request, "Registrar de Nuevo Odontologo");
 
-          $odontologo=new Odontologo();
-          $odontologo->id=$persona ->id;
-          $odontologo->email=$request->input('email');
-          $odontologo->save();
-
-          $persona = Persona::find($persona ->id);
-          $persona->tipo='odontologo';
-          $persona->save();
-
-      }
-  $odontologo->especialidad()->sync($request->get('especialidades'));
-
-   BitacoraController::store ($request,"Registrar de Nuevo Odontologo");
-
-      return redirect()->route('odontologos.index')
-      ->with('success','Funcion completada existosamente');
+        return redirect()->route('odontologos.index')
+            ->with('success', 'Funcion completada existosamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-      $persona = Persona::find($id);
-      $odontologo=Odontologo::find($id);
-      return view('odontologos.show',compact('persona','odontologo'));
+        $odontologo = Odontologo::find($id);
+        return view('odontologos.show', compact('odontologo'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $persona = Persona::find($id);
-      $odontologo=Odontologo::find($id);
-      return view('odontologos.edit',compact('persona','odontologo'));
+
+        $odontologo = Odontologo::find($id);
+        return view('odontologos.edit', compact('odontologo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        $odontologo = Odontologo::find($id);
+        $odontologo->persona->CI = $request->ci;
+        $odontologo->persona->Nombre = $request->nombre;
+        $odontologo->persona->Apellido = $request->apellido;
+        $odontologo->persona->Sexo = $request->sexo;
+        $odontologo->persona->Direccion = $request->direccion;
+        $odontologo->persona->save();
+        $odontologo->save();
 
+        BitacoraController::store($request, "Datos del Odontologo Modificadados");
 
-      $persona = Persona::find($id);
-      $persona->ci=$request->input('ci');
-      $persona ->nombre = $request->input('nombre');
-      $persona ->apellido = $request->input('apellido');
-      $persona ->sexo = $request->input('sexo');
-      $persona ->direccion = $request->input('direccion');
-      $persona ->save();
-
- BitacoraController::store ($request,"Datos del Odontologo Modificadados");
-
-      return redirect()->route('odontologos.index')
-      ->with('success','Funcion completada existosamente');
+        return redirect()->route('odontologos.index')
+            ->with('success', 'Funcion completada existosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
 
-      DB::table("Persona")->where('id',$id)->delete();
-      DB::table("Odontologo")->where('id',$id)->delete();
+        $odontologo = Odontologo::find($id);
+        $persona = Persona::find($odontologo->persona->id)->delete();
+        $odontologo->delete();
+        DB::table("detalle_especialidad")->where('IdOdontologo', $id)->delete();
 
-      DB::table("detalle_especialidad")->where('odontologo_id',$id)->delete();
-
-     BitacoraController::store ($request,"Se Elimino un Odontologo");
-      return redirect()->route('odontologos.index')
-          ->with('success','Proceso realizado con exito');
+        BitacoraController::store($request, "Se Elimino un Odontologo");
+        return redirect()->route('odontologos.index')
+            ->with('success', 'Proceso realizado con exito');
     }
 }

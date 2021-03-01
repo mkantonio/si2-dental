@@ -8,13 +8,17 @@ class Odontologo extends Model
 {
   protected $table = "odontologo";
   public $timestamps=false;
-  protected $fillable = ['id','email'];
+  protected $fillable = ['Correo', 'TipoP'];
   protected $primaryKey = 'id';
 
 
 
 
   public function especialidad(){
-   return $this->belongsToMany(Especialidad::class,'detalle_especialidad','odontologo_id','especialidad_id');
+    return $this->belongsToMany(Especialidad::class,'detalle_especialidad','IdOdontologo','IdEspecialidad');
+  }
+
+  public function persona(){
+    return $this->belongsTo(Persona::class, 'TipoP', 'id');
   }
 }

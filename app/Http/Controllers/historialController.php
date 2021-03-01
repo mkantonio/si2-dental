@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Padecimiento;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Historial;
 use App\Models\Anamnesis;
 use App\Models\Persona;
@@ -20,7 +20,7 @@ class historialController extends Controller
       $citas=DB::table('historial')
       ->join('paciente','historial.paciente_id','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->select('historial.id','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha')
       ->get();
 
@@ -92,12 +92,12 @@ class historialController extends Controller
 
       $citas=DB::table('historial')
       ->join('paciente','paciente.id','=','historial.paciente_id')
-      ->join('cita','cita.id_paciente','=','paciente.id')
-      ->join('detalle_servicio','detalle_servicio.cita_id','=','cita.id')
-      ->join('tratamiento','tratamiento.id','=','detalle_servicio.tratamiento_id')
-      ->join('odontologo','odontologo.id','=','detalle_servicio.odontologo_id')
+      ->join('cita','cita.idPacient','=','paciente.id')
+      ->join('detalle_servicio','detalle_servicio.IdCita','=','cita.id')
+      ->join('tratamiento','tratamiento.id','=','detalle_servicio.idTratamiento')
+      ->join('odontologo','odontologo.id','=','detalle_servicio.IdOdontologo')
       ->join('persona','persona.id','=','odontologo.id')
-      ->where('persona.tipo','=','odontologo')
+      ->where('persona.tipoP','=','odontologo')
       ->where('historial.id','=',$id)
       ->select('persona.nombre as name','tratamiento.nombre as name1','cita.id as id_cita')
       ->get();
@@ -115,7 +115,7 @@ class historialController extends Controller
       $citas=DB::table('historial')
       ->join('paciente','historial.paciente_id','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipo','=','paciente')
+      ->where('persona.tipoP','=','paciente')
       ->join('anamnesis','historial.anamnesis_id','=','anamnesis.id')
       ->where('historial.id','=',$id)
       ->select('historial.id','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha',

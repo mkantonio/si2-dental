@@ -32,21 +32,21 @@
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($personas as $key => $persona)
+        @foreach ($odontologos as $odontologo)
             <tr>
-                <td>{{ $persona->id }}</td>
-                <td>{{ $persona->ci }}</td>
-                <td>{{ $persona->nombre }}</td>
-                <td>{{ $persona->apellido }}</td>
-                <td>{{ $persona->sexo }}</td>
-                <td>{{ $persona->direccion }}</td>
-                <td>{{ $persona->tipo }}</td>
+                <td>{{ $odontologo->Id }}</td>
+                <td>{{ $odontologo->persona->CI }}</td>
+                <td>{{ $odontologo->persona->Nombre }}</td>
+                <td>{{ $odontologo->persona->Apellido }}</td>
+                <td>{{ $odontologo->persona->Sexo }}</td>
+                <td>{{ $odontologo->persona->Direccion }}</td>
+                <td>{{ $odontologo->persona->TipoP }}</td>
 
 
                 <td>
-                    <a class="btn btn-primary"  style="min-width: 35px;height: 35px"  href="{{ route('odontologos.show',$persona->id) }}"><i class="fa  fa-info"></i>Show</a>
-                    <a class="btn btn-success" style="min-width: 35px;height: 35px"href="{{ route('odontologos.edit',$persona->id) }}"><i class="fa fa-edit"></i>Edit</a>
-                    <form action="{{ route('odontologos.destroy', $persona->id) }}" method="POST" style='display:inline'>   
+                    <a class="btn btn-primary"  style="min-width: 35px;height: 35px"  href="{{ route('odontologos.show',$odontologo->id) }}"><i class="fa  fa-info"></i>Show</a>
+                    <a class="btn btn-success" style="min-width: 35px;height: 35px"href="{{ route('odontologos.edit',$odontologo->id) }}"><i class="fa fa-edit"></i>Edit</a>
+                    <form action="{{ route('odontologos.destroy', $odontologo->id) }}" method="POST" style='display:inline'>   
                         @csrf
                         @method('DELETE')      
                         <button type="submit" class="btn btn-danger">Delete</button>
