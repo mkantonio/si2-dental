@@ -23,15 +23,7 @@ class OdontologoController extends Controller
     public function index()
     {
 
-
-        // $personas=DB::table('odontologo as o')
-        //   ->select('p.id','p.ci','p.nombre','p.apellido','p.sexo','p.direccion','p.tipo')
-        //   ->join('persona as p', 'p.id' , '=', 'o.id')
-        //   ->where('p.tipo','=','odontologo')
-        //   ->get();
         $odontologos = Odontologo::all();
-
-
         return view('odontologos.index', compact('odontologos'));
     }
 

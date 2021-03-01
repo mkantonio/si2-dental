@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 //use Collective\Html\Eloquent\FormAccessible;
 use App\Models\Odontologo;
+use App\Models\Recepcionista;
 
 class Persona extends Model
 {
@@ -17,5 +18,9 @@ class Persona extends Model
 
     public function odontologo(){
         return $this->hasOne(Odontologo::class, 'TipoP', 'id');
+    }
+
+    public function recepcionista(){
+        return $this->hasOne(Recepcionista::class, 'TipoP', 'id');
     }
 }

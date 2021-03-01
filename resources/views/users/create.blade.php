@@ -30,9 +30,9 @@
             <div class="form-group">
                 <label><h4>Odontologos </h4> </label>
                 <select name="id" class="form-control" id="id">
-                    @foreach ($odontologos as $ac)
-                        <option value="{{$ac->nombre}}_{{$ac->email}}">
-                            {{$ac->nombre}}_{{$ac->apellido}}</option>
+                    @foreach ($odontologos as $od)
+                        <option value="{{$od->Nombre}} {{$od->Apellido}}">
+                            {{$od->Nombre}} {{$od->Apellido}}</option>
                     @endforeach
                 </select>
             </div>
@@ -40,10 +40,10 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label><h4>Recepcionistas</h4> </label>
-                <select name="id" class="form-control" id="id1">
-                    @foreach ($recepcionistas as $ac)
-                        <option value="{{$ac->nombre}}_{{$ac->email}}">
-                            {{$ac->nombre}}_{{$ac->apellido}}</option>
+                <select name="id1" class="form-control" id="id1">
+                    @foreach ($recepcionistas as $recep)
+                        <option value="{{$recep->Nombre}} {{$recep->Apellido}}">
+                            {{$recep->Nombre}} {{$recep->Apellido}}</option>
                     @endforeach
                 </select>
             </div>

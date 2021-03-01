@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\Permission;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 
 class RoleController extends Controller
 {
@@ -18,9 +19,8 @@ class RoleController extends Controller
     public function index(Request $request)
     {
 
-        $roles = Role::orderBy('id','DESC')->get();
-        return view('roles.index',compact('roles'))
-            ;
+        $roles = Role::orderBy('id', 'DESC')->get();
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -31,7 +31,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        return view('roles.create', compact('permission'));
     }
 
     /**
@@ -59,9 +59,9 @@ class RoleController extends Controller
             $role->attachPermission($value);
         }
 
- BitacoraController::store ($request,"Nuevo Rol");
+        BitacoraController::store($request, "Nuevo Rol");
         return redirect()->route('roles.index')
-            ->with('success','Role created successfully');
+            ->with('success', 'Role created successfully');
     }
     /**
      * Display the specified resource.
@@ -72,11 +72,14 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = Role::find($id);
-        $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
-            ->where("permission_role.role_id",$id)
+        $permissions = Permission::all();
+        $rolePermissions = DB::table('role_has_permissions')
+            ->join('roles', 'roles.id', '=', 'role_has_permissions.role_id')
+            ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
+            ->where('role_id', '=', $role->id)
             ->get();
 
-        return view('roles.show',compact('role','permission','rolePermissions'));
+        return view('roles.show', compact('role', 'permissions', 'rolePermissions'));
     }
 
     /**
@@ -88,10 +91,12 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
-        ->pluck('permission_role.permission_id','permission_role.permission_id')->toArray();
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        $permission = Permission::all();
+        $rolePermissions = DB::table('role_has_permissions')
+            ->where('role_id', '=', $id)
+            ->pluck('role_has_permissions.permission_id')
+            ->toArray();
+        return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
     }
 
     /**
@@ -104,25 +109,21 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'display_name' => 'required',
-            'description' => 'required',
+            'name' => 'required',
             'permission' => 'required',
         ]);
 
-        $role = Role::find($id);
-        $role->display_name = $request->input('display_name');
-        $role->description = $request->input('description');
-        $role->save();
+        $rol = Role::find($id);
+        $rol->fill($request->only('name'))->save();
 
-        DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->delete();
+        DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)->delete();
 
-        foreach ($request->input('permission') as $key => $value) {
-            $role->attachPermission($value);
+        foreach ($request->input('permission') as $permiso) {
+            DB::insert('insert into role_has_permissions (permission_id, role_id) values (?, ?)', [$permiso, $rol->id]);
         }
- BitacoraController::store ($request,"Rol modificado");
+        BitacoraController::store($request, "Rol modificado");
         return redirect()->route('roles.index')
-            ->with('success','Role updated successfully');
+            ->with('success', 'Role updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -130,12 +131,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-        DB::table("roles")->where('id',$id)->delete();
-         BitacoraController::store ($request,"Rol Eliminado");
+        DB::table("roles")->where('id', $id)->delete();
+        BitacoraController::store($request, "Rol Eliminado");
         return redirect()->route('roles.index')
 
-            ->with('success','Role deleted successfully');
+            ->with('success', 'Role deleted successfully');
     }
 }

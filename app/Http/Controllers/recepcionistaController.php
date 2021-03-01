@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Recepcionista;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class recepcionistaController extends Controller
 {

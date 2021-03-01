@@ -21,20 +21,18 @@
     <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Nro</th>
+            <th>Nombre</th>
             <th width="280px">Action</th>
         </tr>
         </thead>
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($roles as $key => $role)
+        @foreach ($roles as $role)
             <tr>
                 <td>{{ $role->id }}</td>
-                <td>{{ $role->display_name }}</td>
-                <td>{{ $role->description }}</td>
+                <td>{{ $role->name }}</td>
                 <td>
                     <a class="btn btn-app" style="min-width: 60px;height: 60px" href="{{ route('roles.show',$role->id) }}"><i class="fa  fa-info"></i>
                         Show

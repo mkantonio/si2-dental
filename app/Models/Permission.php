@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-//use Zizaco\Entrust\EntrustRole;
 
-class Role extends Model
+class Permission extends Model
 {
-    
-    protected $table = "roles";
+    use HasFactory;
+
+    protected $table = "permissions";
     protected $primaryKey = 'id';
     protected $fillable = ['name'];
     public $timestamps = true;
-
-    
 }

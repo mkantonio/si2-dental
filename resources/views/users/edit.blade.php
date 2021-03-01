@@ -51,11 +51,13 @@
 {{--        </div>--}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Role:</strong>
+                <strong>Rol:</strong>
 {{--                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}--}}
                 <select class="form-control" name="roles" id="sexo">
                     @foreach($roles as $rol)
-                        <option value="{{$rol->id}}" {{ ($userRole=='Administrador') ? 'selected="selected"' : ''  }}>{{$rol->name}}</option>
+                        <option value="{{$rol->id}}" {{($user->getRoleNames()[0]==$rol->name) ? 'selected="selected"' : ''}}>
+                            {{$rol->name}}
+                        </option>
                     @endforeach
                 </select>
             </div>
