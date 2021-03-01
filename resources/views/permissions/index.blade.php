@@ -21,20 +21,16 @@
         <tr>
             <th>No</th>
             <th>Nombre</th>
-            <th>Descripcion</th>
-
-              <th width="200px">Action</th>
+            <th width="200px">Action</th>
         </tr>
         </thead>
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($data as $key => $ocupacion)
+        @foreach ($data as $ocupacion)
             <tr>
                 <td>{{ $ocupacion->id}}</td>
                 <td>{{ $ocupacion->name}}</td>
-                <td>{{ $ocupacion->display_name}}</td>
-
                 <td>
 
                   <a class="btn btn-primary" style="min-width: 35px;height: 35px"href="{{ route('permissions.edit',$ocupacion->id) }}"><i class="fa fa-edit"></i>Edit</a>

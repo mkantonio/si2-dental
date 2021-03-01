@@ -15,7 +15,7 @@ class PermissionController extends Controller
     public function index()
     {
         $data = DB::table('permissions')
-            ->select('id','name','display_name')
+            ->select('id','name',)
             ->get();
 
         return view('permissions.index',compact('data'));

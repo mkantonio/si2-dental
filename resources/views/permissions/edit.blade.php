@@ -20,15 +20,15 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                <input placeholder="name" class="form-control" name="name" type="text">
+                <input placeholder="name" class="form-control" name="name" type="text" value="{{$ocupacion->name}}">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripcion:</strong>
                 <input placeholder="name" class="form-control" name="display_name" type="text">
             </div>
-        </div>
+        </div> --}}
 
 
 
