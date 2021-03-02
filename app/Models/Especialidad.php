@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Especialidad extends Model
 {
   protected $table = "especialidad";
-  public $timestamps=false;
-  protected $fillable = ['id', 'IdOdontologo', 'IdEspecialidad'];
   protected $primaryKey = 'id';
+  protected $fillable = ['Nombre', 'Descripcion'];
+  public $timestamps = false;
 
   public function especialidad(){
     return $this->belongsToMany(Especialidad::class,'detalle_especialidad', 'IdEspecialidad', 'IdOdontologo');

@@ -20,13 +20,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                <input placeholder="nombre" class="form-control" name="nombre" type="text">
+                <input placeholder="nombre" class="form-control" name="Nombre" type="text" value="{{ $especialidad->Nombre}}">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripcion:</strong>
-                <input placeholder="descripcion" class="form-control" name="descripcion" type="text">
+                <input placeholder="descripcion" class="form-control" name="Descripcion" type="text" value="{{ $especialidad->Descripcion}}">
             </div>
         </div>
 

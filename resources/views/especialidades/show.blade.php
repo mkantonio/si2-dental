@@ -15,20 +15,20 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>id:</strong>
-                {{ $especialidad->id }}
+                <p style="font-size: 24px">{{ $especialidad->id }}</p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {{ $especialidad->nombre }}
+                <p style="font-size: 24px">{{ $especialidad->Nombre }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripcion:</strong>
-                {{ $especialidad->descripcion }}
+                <p style="font-size: 24px">{{ $especialidad->Descripcion }}</p>
             </div>
         </div>
 

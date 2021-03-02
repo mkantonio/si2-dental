@@ -32,8 +32,8 @@
         @foreach ($especialidades as $key => $especialidad)
             <tr>
                 <td>{{ $especialidad->id }}</td>
-                <td>{{ $especialidad->nombre }}</td>
-                <td>{{ $especialidad->descripcion }}</td>
+                <td>{{ $especialidad->Nombre }}</td>
+                <td>{{ $especialidad->Descripcion }}</td>
 
                 <td>
                     <a class="btn btn-primary"  style="min-width: 35px;height: 35px"  href="{{ route('especialidades.show',$especialidad->id) }}"><i class="fa  fa-info"></i>Show</a>
