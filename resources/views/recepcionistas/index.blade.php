@@ -18,8 +18,8 @@
     <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Ci</th>
+                <th>ID</th>
+                <th>CI</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Sexo</th>
@@ -32,15 +32,15 @@
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($personas as $key => $persona)
+        @foreach ($personas as $persona)
             <tr>
                 <td>{{ $persona->id }}</td>
-                <td>{{ $persona->ci }}</td>
-                <td>{{ $persona->nombre }}</td>
-                <td>{{ $persona->apellido }}</td>
-                <td>{{ $persona->sexo }}</td>
-                <td>{{ $persona->direccion }}</td>
-                <td>{{ $persona->tipo }}</td>
+                <td>{{ $persona->persona->CI }}</td>
+                <td>{{ $persona->persona->Nombre }}</td>
+                <td>{{ $persona->persona->Apellido }}</td>
+                <td>{{ $persona->persona->Sexo }}</td>
+                <td>{{ $persona->persona->Direccion }}</td>
+                <td>{{ $persona->persona->TipoP }}</td>
 
 
                 <td>

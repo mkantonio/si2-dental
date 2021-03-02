@@ -14,41 +14,41 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Ci:</strong>
-                {{ $persona->ci }}
+                <strong>CI:</strong>
+                {{ $persona->persona->CI }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {{ $persona->nombre }}
+                {{ $persona->persona->Nombre }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                {{ $persona->apellido }}
+                {{ $persona->persona->Apellido }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Sexo:</strong>
-                {{ $persona->sexo }}
+                {{ $persona->persona->Sexo }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Direccion:</strong>
-                {{ $persona->direccion }}
+                {{ $persona->persona->Direccion }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {{ $recepcionista->email }}
+                {{ $persona->Correo }}
             </div>
         </div>
 

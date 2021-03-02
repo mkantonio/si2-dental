@@ -9,141 +9,114 @@ use Illuminate\Support\Facades\DB;
 
 class recepcionistaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-       $personas=DB::table('recepcionista as r')
-          ->select('p.id','p.ci','p.nombre','p.apellido','p.sexo','p.direccion','p.tipo')
-          ->join('persona as p', 'p.id' , '=', 'r.id')
-          ->where('p.tipo','=','recepcionista')
-          ->get();
 
-      return view('recepcionistas.index',compact('personas'));
-    }
+  protected $nuevaPersona;
+  protected $nuevaRecepcionista;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('recepcionistas.create');
-    }
+  public function __construct(Persona $nuevaPersona, Recepcionista $nuevaRecepcionista)
+  {
+    $this->nuevaPersona = $nuevaPersona;
+    $this->nuevaRecepcionista = $nuevaRecepcionista;
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      $tipo='';
-      $this->validate($request, [
-          'ci' => 'required',
-          'nombre' => 'required',
-          'apellido' => 'required',
-          'sexo' => 'required',
-          'direccion' => 'required',
-      ]);
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    $personas = Recepcionista::with('persona')->get();
+    return view('recepcionistas.index', compact('personas'));
+  }
 
-      $persona = new Persona();
-      $persona->ci=$request->input('ci');
-      $persona ->nombre = $request->input('nombre');
-      $persona ->apellido = $request->input('apellido');
-      $persona ->sexo = $request->input('sexo');
-      $persona ->direccion = $request->input('direccion');
-      $persona ->tipo = 'niinguno';
-      $persona ->save();
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+    return view('recepcionistas.create');
+  }
 
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+    $this->validate($request, ['CI' => 'required', 'Nombre' => 'required', 'Apellido' => 'required', 'Sexo' => 'required', 'Direccion' => 'required',]);
 
-      if ($request->recepcionista){
+    $persona = $this->nuevaPersona->nuevaRecepcionista($request);
+    $recepcionista = $this->nuevaRecepcionista->nuevaRecepcionista($request, $persona);
+    BitacoraController::store($request, "Registrar de Nueva Recepcionista");
+    return redirect()->route('recepcionistas.index')
+      ->with('success', 'Funcion completada existosamente');
+  }
 
-          $recepcionista=new Recepcionista();
-          $recepcionista->id=$persona ->id;
-          $recepcionista->email=$request->input('email2');
-          $recepcionista->save();
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    $persona = Recepcionista::where('id',$id)->with('persona')->first();
+    return view('recepcionistas.show', compact('persona'));
+  }
 
-          $persona = Persona::find($persona ->id);
-          $persona->tipo='recepcionista';
-          $persona->save();
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+    $persona = Recepcionista::where('id',$id)->with('persona')->first();
+    return view('recepcionistas.edit', compact('persona'));
+  }
 
-      }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id)
+  {
+    $persona = Persona::find($id);
+    $persona->CI = $request->input('CI');
+    $persona->Nombre = $request->input('Nombre');
+    $persona->Apellido = $request->input('Apellido');
+    $persona->Sexo = $request->input('Sexo');
+    $persona->Direccion = $request->input('Direccion');
+    $persona->TipoP = 'Recepcionista';
+    $persona->save();
 
-       BitacoraController::store ($request,"Registrar de Nueva Recepcionista");
-      return redirect()->route('recepcionistas.index')
-      ->with('success','Funcion completada existosamente');
+    BitacoraController::store($request, "Datos modificados Recepcionista");
+    return redirect()->route('recepcionistas.index')
+      ->with('success', 'Funcion completada existosamente');
+  }
 
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-      $persona = Persona::find($id);
-      $recepcionista=Recepcionista::find($id);
-      return view('recepcionistas.show',compact('persona','recepcionista'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-      $persona = Persona::find($id);
-      $recepcionista=Recepcionista::find($id);
-      return view('recepcionistas.edit',compact('persona','recepcionista'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-      $persona = Persona::find($id);
-      $persona->ci=$request->input('ci');
-      $persona ->nombre = $request->input('nombre');
-      $persona ->apellido = $request->input('apellido');
-      $persona ->sexo = $request->input('sexo');
-      $persona ->direccion = $request->input('direccion');
-      $persona ->save();
-
- BitacoraController::store ($request,"Datos modificados Recepcionista");
-      return redirect()->route('recepcionistas.index')
-      ->with('success','Funcion completada existosamente');
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request,$id)
-    {
-      DB::table("Persona")->where('id',$id)->delete();
-      DB::table("Recepcionista")->where('id',$id)->delete();
-       BitacoraController::store ($request,"Eliminacion de Recepcionista");
-      return redirect()->route('recepcionistas.index')
-          ->with('success','Proceso realizado con exito');
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(Request $request, $id)
+  {
+    $r = Recepcionista::find($id);
+    DB::table("Persona")->where('id', $r->TipoP)->delete();
+    $r->delete();
+    BitacoraController::store($request, "Eliminacion de Recepcionista");
+    return redirect()->route('recepcionistas.index')
+      ->with('success', 'Proceso realizado con exito');
+  }
 }

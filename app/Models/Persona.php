@@ -23,4 +23,15 @@ class Persona extends Model
     public function recepcionista(){
         return $this->hasOne(Recepcionista::class, 'TipoP', 'id');
     }
+
+    public function nuevaRecepcionista($request){
+        $this->CI = $request->input('CI');
+        $this->Nombre = $request->input('Nombre');
+        $this->Apellido = $request->input('Apellido');
+        $this->Sexo = $request->input('Sexo');
+        $this->Direccion = $request->input('Direccion');
+        $this->TipoP = 'Recepcionista';
+        $this->save();
+        return $this;
+    }
 }
