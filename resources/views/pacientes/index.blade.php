@@ -35,12 +35,12 @@
         @foreach ($personas as $key => $persona)
             <tr>
                 <td>{{ $persona->id }}</td>
-                <td>{{ $persona->ci }}</td>
-                <td>{{ $persona->nombre }}</td>
-                <td>{{ $persona->apellido }}</td>
-                <td>{{ $persona->sexo }}</td>
-                <td>{{ $persona->direccion }}</td>
-                <td>{{ $persona->tipo }}</td>
+                <td>{{ $persona->CI }}</td>
+                <td>{{ $persona->Nombre }}</td>
+                <td>{{ $persona->Apellido }}</td>
+                <td>{{ $persona->Sexo }}</td>
+                <td>{{ $persona->Direccion }}</td>
+                <td>{{ $persona->TipoP }}</td>
 
 
 
