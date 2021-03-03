@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleado;
-use App\Models\Odontologo;
-use App\Models\Paciente;
-use App\Models\Recepcionista;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
 use App\Models\Persona;
-use DB;
+use App\Models\Empleado;
+use App\Models\Paciente;
+use App\Models\Odontologo;
+use Illuminate\Http\Request;
+use App\Models\Recepcionista;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 
 class PersonaController extends Controller

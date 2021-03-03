@@ -32,8 +32,8 @@
         @foreach ($padecimientos as $key => $padecimiento)
             <tr>
                 <td>{{ $padecimiento->id }}</td>
-                <td>{{ $padecimiento->nombre }}</td>
-                <td>{{ $padecimiento->descripcion }}</td>
+                <td>{{ $padecimiento->Nombre }}</td>
+                <td>{{ $padecimiento->Descripcion }}</td>
 
                 <td>
                     <a class="btn btn-primary"  style="min-width: 35px;height: 35px"  href="{{ route('padecimientos.show',$padecimiento->id) }}"><i class="fa  fa-info"></i>Show</a>

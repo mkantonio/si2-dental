@@ -22,13 +22,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                {{ $padecimiento->nombre }}
+                {{ $padecimiento->Nombre }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripcion:</strong>
-                {{ $padecimiento->descripcion }}
+                {{ $padecimiento->Descripcion }}
             </div>
         </div>
 
