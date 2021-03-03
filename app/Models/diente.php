@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class diente extends Model
 {
-  protected $table = "dientes";
-  public $timestamps=false;
-  protected $fillable = ['id','nombre','descripcion'];
+  protected $table = "diente";
   protected $primaryKey = 'id';
+  protected $fillable = ['nombre', 'descripcion'];
+  public $timestamps = false;
 }

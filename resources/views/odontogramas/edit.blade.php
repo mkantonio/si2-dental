@@ -24,7 +24,7 @@
           <ul class="list-unstyled">
                 @foreach($diente as $value)
                     <label><input class="name" {{ in_array($value->id, $piezadental) ? "checked='checked'" : "", $value->id }} name="dientes[]" type="checkbox" value="{{$value->id}}">
-                        {{ $value->nombre}}</label>
+                        {{ $value->Nombre}}</label>
                 @endforeach
               </ul>
               </div>

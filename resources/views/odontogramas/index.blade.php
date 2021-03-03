@@ -30,10 +30,10 @@
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($citas as $key => $cita)
+        @foreach ($citas as $cita)
             <tr>
                 <td>{{$cita->id}}</td>
-                <td>{{$cita->ci}}</td>
+                <td>{{$cita->CI}}</td>
                 <td>{{ $cita->nombreP }}</td>
                 <td>{{ $cita->apell }}</td>
 

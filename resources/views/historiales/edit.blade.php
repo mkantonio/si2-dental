@@ -56,7 +56,7 @@
             <strong>Esta en tratamiento Con su Medico:</strong>
             @foreach ($citas as $ac)
                 <option value="{{$ac->id}}">
-                    {{$ac->pregunta1}}</option>
+                    {{$ac->Pregunta1}}</option>
             @endforeach
           </div>
         </div>
@@ -70,7 +70,7 @@
             <strong>Alergias Regisrtrada</strong>
             @foreach ($citas as $ac)
                 <option value="{{$ac->id}}">
-                    {{$ac->pregunta2}}</option>
+                    {{$ac->Pregunta2}}</option>
             @endforeach
           </div>
         </div>
@@ -82,7 +82,7 @@
           <strong>Presion Arterial Registrada:</strong>
           @foreach ($citas as $ac)
               <option value="{{$ac->id}}">
-                  {{$ac->pregunta3}}</option>
+                  {{$ac->Pregunta3}}</option>
           @endforeach
         </div>
       </div>
@@ -95,7 +95,7 @@
         <strong>Fobia Registrado:</strong>
         @foreach ($citas as $ac)
             <option value="{{$ac->id}}">
-                {{$ac->pregunta4}}</option>
+                {{$ac->Pregunta4}}</option>
         @endforeach
       </div>
     </div>
@@ -109,14 +109,14 @@
         <strong>Frecuencia de Cepillado Registrada:</strong>
         @foreach ($citas as $ac)
             <option value="{{$ac->id}}">
-                {{$ac->pregunta5}}</option>
+                {{$ac->Pregunta5}}</option>
         @endforeach
       </div>
     </div>
 
 </div>
 
-<div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
+{{-- <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
     <div class="form-group">
       <div class="alert-">
         <strong>Habitos de Consumo:</strong>
@@ -126,8 +126,7 @@
         @endforeach
       </div>
     </div>
-
-</div>
+</div> --}}
 
 
 <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
@@ -149,7 +148,7 @@
         <strong>Descripcion Del Pacientes:</strong>
         @foreach ($citas as $ac)
             <option value="{{$ac->id}}">
-                {{$ac->descripcion}}</option>
+                {{$ac->Descripcion}}</option>
         @endforeach
       </div>
     </div>
@@ -164,7 +163,7 @@
         @foreach($enfermedades as $value)
             <label>
                 <input class="name" {{ in_array($value->id, $role1) ? "checked='checked'" : "" }} name="enfermedades[]" type="checkbox" value="{{$value->id}}">
-                {{ $value->nombre}}
+                {{ $value->Nombre}}
               </label>
         @endforeach
       </ul>

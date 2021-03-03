@@ -33,10 +33,10 @@
         @foreach ($citas as $key => $cita)
             <tr>
                 <td>{{ $cita->id }}</td>
-                <td>{{ $cita->ci }}</td>
+                <td>{{ $cita->CI }}</td>
                 <td>{{ $cita->nombreP }}</td>
                 <td>{{ $cita->apell }}</td>
-                 <td>{{$cita->fecha}}</td>
+                 <td>{{$cita->Fecha}}</td>
                 <td>
                     <a class="btn btn-info" style="min-width: 35px;height: 35px"href="
                     {{ route('historiales.edit',$cita->id) }}"><i class="fa fa-edit"></i>Detalles</a>

@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Padecimiento extends Model
 {
   protected $table = "padecimiento";
-  public $timestamps=false;
-  protected $fillable = ['id','nombre','descripcion'];
   protected $primaryKey = 'id';
+  protected $fillable = ['Nombre', 'Descripcion'];
+  public $timestamps = false;
+
+  public function anamnesis(){
+    return $this->belongsToMany(Anamnesis::class,'detalle_anamnesis','IdAnamnesis','IdPadecimiento');
+  }
 
 }

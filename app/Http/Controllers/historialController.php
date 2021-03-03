@@ -18,10 +18,10 @@ class historialController extends Controller
     public function index()
     {
       $citas=DB::table('historial')
-      ->join('paciente','historial.paciente_id','=','paciente.id')
-      ->join('persona','paciente.id','=','persona.id')
+      ->join('paciente','historial.idPaciente','=','paciente.id')
+      ->join('persona','paciente.TipoP','=','persona.id')
       ->where('persona.tipoP','=','paciente')
-      ->select('historial.id','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha')
+      ->select('historial.id','persona.CI','persona.Nombre as nombreP','persona.Apellido as apell','paciente.Fecha')
       ->get();
 
         return view('historiales.index',compact('citas'));
@@ -91,15 +91,15 @@ class historialController extends Controller
     {
 
       $citas=DB::table('historial')
-      ->join('paciente','paciente.id','=','historial.paciente_id')
+      ->join('paciente','paciente.id','=','historial.IdPaciente')
       ->join('cita','cita.idPacient','=','paciente.id')
       ->join('detalle_servicio','detalle_servicio.IdCita','=','cita.id')
       ->join('tratamiento','tratamiento.id','=','detalle_servicio.idTratamiento')
       ->join('odontologo','odontologo.id','=','detalle_servicio.IdOdontologo')
-      ->join('persona','persona.id','=','odontologo.id')
+      ->join('persona','persona.id','=','odontologo.TipoP')
       ->where('persona.tipoP','=','odontologo')
       ->where('historial.id','=',$id)
-      ->select('persona.nombre as name','tratamiento.nombre as name1','cita.id as id_cita')
+      ->select('persona.Nombre as name','tratamiento.Nombre as name1','cita.id as id_cita')
       ->get();
     return view('historiales.show',compact('citas'));
     }
@@ -113,30 +113,30 @@ class historialController extends Controller
     public function edit($id)
     {
       $citas=DB::table('historial')
-      ->join('paciente','historial.paciente_id','=','paciente.id')
-      ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipoP','=','paciente')
-      ->join('anamnesis','historial.anamnesis_id','=','anamnesis.id')
+      ->join('paciente','historial.IdPaciente','=','paciente.id')
+      ->join('persona','paciente.TipoP','=','persona.id')
+      ->where('persona.tipoP','=','Paciente')
+      ->join('anamnesis','historial.IdAnamnesis','=','anamnesis.id')
       ->where('historial.id','=',$id)
-      ->select('historial.id','persona.ci','persona.nombre as nombreP','persona.apellido as apell','paciente.fecha',
-      'persona.sexo as sex','persona.direccion as dir','anamnesis.estado as es','anamnesis.descripcion','anamnesis.pregunta1','anamnesis.pregunta2'
-      ,'anamnesis.pregunta3','anamnesis.pregunta4','anamnesis.pregunta5','anamnesis.pregunta6')
+      ->select('historial.id','persona.ci','persona.Nombre as nombreP','persona.Apellido as apell','paciente.Fecha',
+      'persona.Sexo as sex','persona.Direccion as dir','anamnesis.Estado as es','anamnesis.Descripcion','anamnesis.Pregunta1','anamnesis.Pregunta2'
+      ,'anamnesis.Pregunta3','anamnesis.Pregunta4','anamnesis.Pregunta5')
       ->get();
 
       $enfermedades=Padecimiento::get();
 
       $role = DB::table('historial')
-      ->join('anamnesis','anamnesis.id','=','historial.anamnesis_id')
-      ->join('detalle_anamnesis','detalle_anamnesis.anamnesis_id','=','anamnesis.id')
-      ->join('padecimiento','padecimiento.id','=','detalle_anamnesis.padecimiento_id')
+      ->join('anamnesis','anamnesis.id','=','historial.IdAnamnesis')
+      ->join('detalle_anamnesis','detalle_anamnesis.IdAnamnesis','=','anamnesis.id')
+      ->join('padecimiento','padecimiento.id','=','detalle_anamnesis.IdPadecimiento')
       ->where('historial.id','=',$id)
-      ->pluck('detalle_anamnesis.anamnesis_id','detalle_anamnesis.padecimiento_id')->toArray();
+      ->pluck('detalle_anamnesis.IdAnamnesis','detalle_anamnesis.IdPadecimiento')->toArray();
 
       $role1 = DB::table("detalle_anamnesis as deta")
-      ->join('anamnesis','anamnesis.id','=','deta.anamnesis_id')
-      ->join('historial','historial.anamnesis_id','=','anamnesis.id')
+      ->join('anamnesis','anamnesis.id','=','deta.IdAnamnesis')
+      ->join('historial','historial.IdAnamnesis','=','anamnesis.id')
       ->where('historial.id','=',$id)
-      ->pluck('deta.padecimiento_id','deta.padecimiento_id')->toArray();
+      ->pluck('deta.IdPadecimiento','deta.IdPadecimiento')->toArray();
 
       $historial=Historial::find($id);
      return view('historiales.edit',compact('citas','enfermedades','role1','historial'));
