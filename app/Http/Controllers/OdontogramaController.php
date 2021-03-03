@@ -70,7 +70,7 @@ class OdontogramaController extends Controller
     public function show($id)
     {
 
-                $aux=DB::table('pieza_dental as pz')
+                $aux=DB::table('piezadental as pz')
                 ->join('odontograma','odontograma.id','=','pz.IdOdontograma')
                 ->join('diente','diente.id','=','pz.IdDiente')
                 ->where('odontograma.id','=',$id)
@@ -106,7 +106,7 @@ class OdontogramaController extends Controller
     {
         $odontograma=Odontograma::find($id);
         $odontograma->save();
-        DB::table("pieza_dental")->where("pieza_dental.odontograma_id",$id)
+        DB::table("piezadental")->where("piezadental.odontograma_id",$id)
             ->delete();
             $odontograma->diente()->sync($request->get('dientes'));
 
@@ -127,7 +127,7 @@ class OdontogramaController extends Controller
     {
 
       DB::table("odontograma")->where('id',$id)->delete();
-      DB::table("pieza_dental")->where("pieza_dental.odontograma_id",$id)
+      DB::table("piezadental")->where("piezadental.odontograma_id",$id)
           ->delete();
 
      BitacoraController::store ($request,"Se Elimino un Odontograma");

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
-use DB;
 use App\Models\Persona;
+use App\Models\Paciente;
 use App\Models\Historial;
 use App\Models\Odontograma;
-use App\Models\Paciente;
 use App\Models\PiezaDental;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -26,11 +26,11 @@ class PiezaController extends Controller
     public function index()
     {
       $detalle=DB::table('persona as p')
-        ->join('paciente','paciente.id','=','p.id')
-        ->join('historial','historial.paciente_id','=','paciente.id')
-        ->join('odontograma','odontograma.id','=','historial.odontograma_id')
-        ->where('p.tipo','=','paciente')
-        ->select('odontograma.id','p.ci','p.nombre as nombreP','p.apellido as apell')
+        ->join('paciente','paciente.TipoP','=','p.id')
+        ->join('historial','historial.IdPaciente','=','paciente.id')
+        ->join('odontograma','odontograma.id','=','historial.IdOdontograma')
+        ->where('p.TipoP','=','Paciente')
+        ->select('odontograma.id','p.CI','p.Nombre as nombreP','p.Apellido as apell')
         ->get();
         return view('piezas.index',compact('detalle'));
     }
@@ -65,11 +65,11 @@ class PiezaController extends Controller
     public function show($id)
     {
 
-          $aux=DB::table('pieza_dental as pz')
-          ->join('odontograma','odontograma.id','=','pz.odontograma_id')
-          ->join('dientes','dientes.id','=','pz.diente_id')
+          $aux=DB::table('piezadental as pz')
+          ->join('odontograma','odontograma.id','=','pz.IdOdontograma')
+          ->join('dientes','dientes.id','=','pz.IdDiente')
           ->where('odontograma.id','=',$id)
-          ->select('dientes.descripcion as des','dientes.nombre as dn')
+          ->select('dientes.Descripcion as des','dientes.Nombre as dn')
           ->get();
         
           return view('piezas.show',compact('piezasdetalle','aux'));
@@ -85,9 +85,9 @@ class PiezaController extends Controller
     {
 
        $prueba=PiezaDental::find($id);
-       $pieza=DB::table('pieza_dental')
-       ->where('pieza_dental.id','=',$id)
-       ->pluck('pieza_dental.id')->toArray();
+       $pieza=DB::table('piezadental')
+       ->where('piezadental.id','=',$id)
+       ->pluck('piezadental.id')->toArray();
         return view('piezas.edit',compact('pieza','prueba'));
 
     }
