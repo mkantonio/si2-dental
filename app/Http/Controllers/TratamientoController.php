@@ -40,6 +40,9 @@ class TratamientoController extends Controller
         $tratamiento->Nombre = $request->input('Nombre');
         $tratamiento->Costo = $request->input('Costo');
         $tratamiento->Descripcion = $request->input('Descripcion');
+        $tratamiento->NroDiasTratamiento = 1;
+        $tratamiento->NroDiasAsistidas = 1;
+        $tratamiento->NroDiasNoAsistidas = 1;
         $tratamiento->save();
         BitacoraController::store($request, "Datos Tratamiento Creados");
         return redirect()->route('tratamiento.index')
