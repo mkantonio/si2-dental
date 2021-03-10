@@ -24,7 +24,6 @@ class AgendaController extends Controller
       $citas=DB::table('cita')
       ->join('paciente','cita.idPacient','=','paciente.id')
       ->join('persona','paciente.id','=','persona.id')
-
       ->where('persona.tipoP','=','paciente')
       ->select('cita.id','cita.hora','cita.fecha','persona.nombre as nombreP','persona.apellido as apell','cita.descripcion')
       ->get();

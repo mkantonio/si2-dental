@@ -107,12 +107,14 @@ class CitaController extends Controller
   {
     $personas = DB::table('persona as p')
       ->select('p.id', 'p.nombre')
-      ->join('paciente', 'paciente.id', '=', 'p.id')
-      ->join('cita', 'cita.idPacient', '=', 'paciente.id')
+      ->join('paciente', 'paciente.TipoP', '=', 'p.id')
+      ->join('cita', 'cita.IdPacient', '=', 'paciente.id')
       ->where('cita.id', '=', $id)
       ->get();
     $cita = Cita::find($id);
-    return view('citas.edit', compact('cita', 'personas'));
+    $agendas = Agenda::agendaLibreOdontologo();
+
+    return view('citas.edit', compact('cita', 'personas', 'agendas'));
   }
 
   /**
@@ -125,12 +127,21 @@ class CitaController extends Controller
   public function update(Request $request, $id)
   {
 
+    $this->validate($request, [
+      'hora' => 'required',
+      'fecha' => 'required',
+      'agenda_id' => 'required',
+      'IdPaciente' => 'required',
+      'descripcion' => 'required',
+    ]);
+
+    $persona = Persona::find($request->IdPaciente);
     $citas = Cita::find($id);
-    $citas->hora = $request->input('hora');
-    $citas->fecha = $request->input('fecha');
-    $citas->agenda_id = $request->input('agenda_id');
-    $citas->idPacient = $request->input('id');
-    $citas->descripcion = $request->input('descripcion');
+    $citas->Hora = $request->input('hora');
+    $citas->Fecha = $request->input('fecha');
+    $citas->Descripcion = $request->input('descripcion');
+    $citas->IdAgenda = $request->input('agenda_id');
+    $citas->IdPacient = $persona->paciente->id;
     $citas->save();
 
     BitacoraController::store($request, "Cita Reprogramada");
