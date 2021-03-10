@@ -30,11 +30,10 @@
       <div class="col-xs-10 col-sm-12 col-md-10">
           <div class="form-group">
             <div class="alert-success">
-              <strong>Odontologo De servicio:</strong>
-              <select name="id" class="form-control" id="id">
-                  @foreach ($persona as $ac)
-                      <option value="{{$ac->id}}">
-                          {{$ac->nombre}}_{{$ac->apellido}}</option>
+              <strong>Odontologo De Servicio:</strong>
+              <select name="IdOdontologo" class="form-control" id="id">
+                  @foreach ($odontologos as $odontologo)
+                      <option value="{{$odontologo->id}}">{{$odontologo->persona->Nombre}} {{$odontologo->persona->Apellido}}</option>
                   @endforeach
               </select>
           </div>
@@ -44,10 +43,9 @@
           <div class="form-group">
             <div class="alert-success">
               <strong>Tratamiento Realizado:</strong>
-              <select name="id_trata" class="form-control" id="id">
-                  @foreach ($tratamiento as $trata)
-                      <option value="{{$ac->id}}">
-                          {{$trata->Nombre}}</option>
+              <select name="tratamiento" class="form-control" id="id">
+                  @foreach ($tratamientos as $tratamiento)
+                      <option value="{{$tratamiento->id}}">{{$tratamiento->Nombre}}</option>
                   @endforeach
               </select>
           </div>
@@ -58,9 +56,9 @@
           <div class="form-group">
               <div class="alert-success">
               <strong>Cita Realizada por el Paciente:</strong>
-              <select name="id_cita" class="form-control" id="id">
+              <select name="IdCita" class="form-control" id="id">
                   @foreach ($cita as $piv)
-                      <option value="{{$ac->id}}">
+                      <option value="{{$piv->id}}">
                       Numero de Cita:-  {{$piv->id}}....Nombre del Paciente ....{{$piv->name}}...{{$piv->apell}}</option>
                   @endforeach
               </select>
@@ -72,9 +70,9 @@
           <div class="form-group">
             <div class="alert-success">
               <strong>Tipo de Servicio:</strong>
-              <select name="pregunta2" class="form-control">
+              <select name="Tipo" class="form-control">
                   <option value="Tratamiento">Tratamiento</option>
-                  <option value="Consulta_General">Consulta_General</option>
+                  <option value="Consulta General">Consulta General</option>
                   <option value="Otros">Otros</option>
               </select>
           </div>

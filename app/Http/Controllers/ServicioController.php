@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tratamiento;
 use App\Models\Servicio;
 use App\Models\DetalleServicio;
+use App\Models\Odontologo;
 
 class ServicioController extends Controller
 {
@@ -17,16 +18,16 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $servicios=DB::table('servicio')
-        ->join('detalle_servicio as ds','ds.IdServicio','=','servicio.id')
-        ->join('tratamiento','tratamiento.id','=','ds.idTratamiento')
-        ->join('cita','cita.id','=','ds.IdCita')
-        ->join('odontologo','odontologo.id','=','ds.IdOdontologo')
-        ->join('persona','persona.id','=','odontologo.id')
-        ->where('persona.tipoP','=','odontologo')
-        ->select('servicio.id','ds.*','tratamiento.nombre as name','cita.id as idcita','persona.nombre as name1','persona.apellido as apelli')
-        ->get();
-        return view('servicios.index',compact('servicios'));
+        $servicios = DB::table('servicio')
+            ->join('detalle_servicio as ds', 'ds.IdServicio', '=', 'servicio.id')
+            ->join('tratamiento', 'tratamiento.id', '=', 'ds.IdTratamiento')
+            ->join('cita', 'cita.id', '=', 'ds.IdCita')
+            ->join('odontologo', 'odontologo.id', '=', 'ds.IdOdontologo')
+            ->join('persona', 'persona.id', '=', 'odontologo.TipoP')
+            ->where('persona.TipoP', '=', 'Odontologo')
+            ->select('servicio.id', 'ds.*', 'tratamiento.nombre as name', 'cita.id as idcita', 'persona.nombre as name1', 'persona.apellido as apelli')
+            ->get();
+        return view('servicios.index', compact('servicios'));
     }
 
     /**
@@ -36,23 +37,22 @@ class ServicioController extends Controller
      */
     public function create()
     {
+        $tratamientos = Tratamiento::all();
+        $cita = DB::table('cita')
+            ->join('paciente', 'paciente.id', '=', 'cita.idPacient')
+            ->join('persona', 'persona.id', '=', 'paciente.TipoP')
+            ->where('persona.TipoP', '=', 'Paciente')
+            ->select('cita.id', 'persona.nombre as name', 'persona.apellido as apell')
+            ->get();
 
-       $tratamiento=DB::table('tratamiento')
-       ->select('tratamiento.*')
-       ->get();
+        $odontologos = Odontologo::with('persona')->get();
 
-       $cita=DB::table('cita')
-       ->join('paciente','paciente.id','=','cita.idPacient')
-       ->join('persona','persona.id','=','paciente.id')
-       ->where('persona.tipoP','=','paciente')
-       ->select('cita.id','persona.nombre as name','persona.apellido as apell')
-       ->get();
-       $persona=DB::table('persona')
-       ->join('odontologo','odontologo.id','=','persona.id')
-       ->where('persona.tipoP','=','odontologo')
-       ->select('persona.id','persona.nombre','persona.apellido')
-       ->get();
-        return view('servicios.create',compact('cita','tratamiento','persona'));
+        // $personas = DB::table('persona')
+        //     ->join('odontologo', 'odontologo.TipoP', '=', 'persona.id')
+        //     ->where('persona.TipoP', '=', 'Odontologo')
+        //     ->select('persona.id', 'persona.nombre', 'persona.apellido')
+        //     ->get();
+        return view('servicios.create', compact('cita', 'tratamientos', 'odontologos'));
     }
 
     /**
@@ -63,24 +63,35 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        $servicio=new Servicio();
-        $servicio->tipo=$request->input('pregunta2');
+
+        $this->validate($request, [
+            'IdOdontologo' => 'required',
+            'IdCita' => 'required',
+            'Tipo' => 'required',
+            'tratamiento' => 'required',
+        ]);
+        $tratamiento = Tratamiento::find($request->tratamiento);
+        $servicio = new Servicio();
+        $servicio->Tipo = $request->input('Tipo');
         $servicio->save();
+        // $odontologo = Odontologo::where('TipoP', '=', $request->IdOdontologo)->with('persona')->get();
 
-        $detalle=new DetalleServicio();
-        $detalle->IdServicio=$servicio->id;
-        $detalle->idTratamiento=$request->input('id_trata');
-        $detalle->IdCita=$request->input('id_cita');
-        $detalle->IdOdontologo=$request->input('id');
-        $detalle->save();  
+        $detalle = DetalleServicio::create([
+            'IdOdontologo' => $request->IdOdontologo,
+            'IdCita' => $request->IdCita,
+            'IdServicio' => $servicio->id,
+            'IdTratamiento' => $tratamiento->id,
+        ]);
+        // $detalle = new DetalleServicio();
+        // $detalle->IdOdontologo = $request->IdOdontologo;
+        // $detalle->IdCita = $request->input('IdCita');
+        // $detalle->IdServicio = $servicio->id;
+        // $detalle->IdTratamiento = $request->tratamiento;
+        // $detalle->save();
         // dd($detalle); die();
-
-
-        BitacoraController::store ($request,"Registro de Servicio");
-
-           return redirect()->route('servicios.index')
-           ->with('warning','Funcion completada existosamente');
-
+        BitacoraController::store($request, "Registro de Servicio");
+        return redirect()->route('servicios.index')
+            ->with('warning', 'Funcion completada existosamente');
     }
 
     /**

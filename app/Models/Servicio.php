@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Servicio extends Model
 {
   protected $table = "servicio";
-  public $timestamps=false;
-  protected $fillable = ['id','IdServicio','idTratamiento','IdCita','IdOdontologo'];
   protected $primaryKey = 'id';
+  protected $fillable = ['Tipo', 'Detalle'];
+  public $timestamps = false;
 }
