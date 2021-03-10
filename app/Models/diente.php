@@ -8,6 +8,6 @@ class diente extends Model
 {
   protected $table = "diente";
   protected $primaryKey = 'id';
-  protected $fillable = ['nombre', 'descripcion'];
+  protected $fillable = ['Nombre', 'Descripcion'];
   public $timestamps = false;
 }

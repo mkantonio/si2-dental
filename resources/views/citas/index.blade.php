@@ -7,9 +7,11 @@
                 <h2>Lista de Citas Registradas</h2>
 
             </div>
+            {{-- @role('Recepcionista') --}}
             <div class="pull-right">
                 <a class="btn btn-primary"style="min-width: 40px;height: 40px"  href="{{ route('citas.create') }}"> <h4>Registrar Nueva Cita</h4> </a>
             </div>
+            {{-- @endrole --}}
 
         </div>
     </div>

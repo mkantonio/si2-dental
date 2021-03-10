@@ -21,7 +21,7 @@
               <select name="id" class="form-control" id="id">
                   @foreach ($personas as $ac)
                       <option value="{{$ac->id}}">
-                          {{$ac->nombre}}</option>
+                          {{$ac->Nombre}}</option>
                   @endforeach
               </select>
           </div>
@@ -33,7 +33,7 @@
               <select name="id" class="form-control" id="id">
                   @foreach ($personas as $ac)
                       <option value="{{$ac->id}}">
-                          {{$ac->apellido}}</option>
+                          {{$ac->Apellido}}</option>
                   @endforeach
               </select>
           </div>
@@ -45,7 +45,7 @@
             <div class="form-group">
               <div class="alert alert-info">
                 <strong><h4>Hora de la Cita:</h4></strong>
-               <h4>  {{ $cita->hora}}</h4>
+               <h4>  {{ $cita->Hora}}</h4>
             </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
               <div class="alert alert-info">
                 <strong>Fecha de la Cita:</strong>
-                <h4>{{ $cita->fecha}}</h4>
+                <h4>{{ $cita->Fecha}}</h4>
             </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
             <div class="form-group">
               <div class="alert alert-info">
                 <strong>Motivo de la visita del Paciente:</strong>
-                <h4>{{ $cita->descripcion }}</h4>
+                <h4>{{ $cita->Descripcion }}</h4>
             </div>
         </div>
     </div>

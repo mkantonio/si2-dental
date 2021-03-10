@@ -30,17 +30,17 @@
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($citas as $cita)
+        @foreach ($odontogramas as $odontograma)
             <tr>
-                <td>{{$cita->id}}</td>
-                <td>{{$cita->CI}}</td>
-                <td>{{ $cita->nombreP }}</td>
-                <td>{{ $cita->apell }}</td>
+                <td>{{$odontograma->id}}</td>
+                <td>{{$odontograma->CI}}</td>
+                <td>{{$odontograma->nombreP }}</td>
+                <td>{{$odontograma->apell }}</td>
 
                 <td>
                     <a class="btn btn-success" style="min-width: 35px;height: 35px"href="
-                    {{ route('odontogramas.edit',$cita->id) }}"><i class="fa fa-edit"></i>Editar</a>
-                    <form action="{{ route('odontogramas.destroy', $cita->id) }}" method="POST" style='display:inline'>   
+                    {{ route('odontogramas.edit',$odontograma->id) }}"><i class="fa fa-edit"></i>Editar</a>
+                    <form action="{{ route('odontogramas.destroy', $odontograma->id) }}" method="POST" style='display:inline'>   
                         @csrf
                         @method('DELETE')      
                         <button type="submit" class="btn btn-danger">Delete</button>

@@ -2,10 +2,11 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
-          <h1 style="text-align:center;">Lista de Historiales</h1>
+            <h1 style="text-align:center;">Lista de Historiales</h1>
             <div class="pull-right">
-                <a class="btn btn-primary"style="min-width: 40px;height: 40px"
-                href="{{ route('historiales.create') }}"><h4>Crear Historial</h4> </a>
+                <a class="btn btn-primary" style="min-width: 40px;height: 40px" href="{{ route('historiales.create') }}">
+                    <h4>Crear Historial</h4>
+                </a>
             </div>
 
         </div>
@@ -30,21 +31,21 @@
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($citas as $key => $cita)
-            <tr>
-                <td>{{ $cita->id }}</td>
-                <td>{{ $cita->CI }}</td>
-                <td>{{ $cita->nombreP }}</td>
-                <td>{{ $cita->apell }}</td>
-                 <td>{{$cita->Fecha}}</td>
-                <td>
-                    <a class="btn btn-info" style="min-width: 35px;height: 35px"href="
-                    {{ route('historiales.edit',$cita->id) }}"><i class="fa fa-edit"></i>Detalles</a>
-                    <a class="btn btn-warning" style="min-width: 35px;height: 35px"href="
-                    {{ route('historiales.show',$cita->id) }}"><i class=""></i>Detalles Servicios</a>
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($historiales as $historial)
+                <tr>
+                    <td>{{ $historial->id }}</td>
+                    <td>{{ $historial->CI }}</td>
+                    <td>{{ $historial->nombreP }}</td>
+                    <td>{{ $historial->apell }}</td>
+                    <td>{{ $historial->Fecha }}</td>
+                    <td>
+                        <a class="btn btn-info" style="min-width: 35px;height: 35px" href="
+                        {{ route('historiales.edit', $historial->id) }}"><i class="fa fa-edit"></i>Detalles</a>
+                        <a class="btn btn-warning" style="min-width: 35px;height: 35px" href="
+                        {{ route('historiales.show', $historial->id) }}"><i class=""></i>Detalles Servicios</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
 
 

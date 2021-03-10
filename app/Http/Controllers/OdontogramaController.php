@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\diente;
 use App\Models\Odontograma;
+use App\Models\Paciente;
 use App\Models\Persona;
 use App\Models\PiezaDental;
 use Illuminate\Http\Request;
@@ -20,15 +21,15 @@ class OdontogramaController extends Controller
     {
         // $citas = Persona::where('TipoP', 'Paciente')->with('paciente')->get();
 
-        $citas = DB::table('persona as p')
-        ->join('paciente', 'paciente.TipoP', '=', 'p.id')
-        ->join('historial', 'historial.IdPaciente', '=', 'paciente.id')
-        ->join('odontograma', 'odontograma.id', '=', 'historial.IdOdontograma')
-        ->where('p.TipoP', '=', 'Paciente')
-        ->select('odontograma.id', 'p.CI', 'p.Nombre as nombreP', 'p.Apellido as apell')
-        ->get();
-        // dd($citas);
-        return view('odontogramas.index', compact('citas'));
+        $odontogramas = DB::table('persona as p')
+            ->join('paciente', 'paciente.TipoP', '=', 'p.id')
+            ->join('odontograma', 'odontograma.IdPaciente', '=', 'paciente.id')
+            // ->join('historial', 'historial.IdPaciente', '=', 'paciente.id')
+            // ->join('odontograma', 'odontograma.id', '=', 'historial.IdOdontograma')
+            ->where('p.TipoP', '=', 'Paciente')
+            ->select('odontograma.id', 'p.CI', 'p.Nombre as nombreP', 'p.Apellido as apell')
+            ->get();
+        return view('odontogramas.index', compact('odontogramas'));
     }
 
     /**
@@ -37,8 +38,10 @@ class OdontogramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {     $dientes=diente::get();
-          return view('odontogramas.create',compact('dientes'));
+    {
+        $dientes = diente::get();
+        $pacientes = Paciente::with('persona')->get();
+        return view('odontogramas.create', compact('dientes', 'pacientes'));
     }
 
     /**
@@ -49,16 +52,13 @@ class OdontogramaController extends Controller
      */
     public function store(Request $request)
     {
-        $odontograma=new Odontograma();
+        $odontograma = new Odontograma();
+        $odontograma->IdPaciente = $request->input('IdPaciente');
         $odontograma->save();
-
-      $odontograma->diente()->sync($request->get('dientes'));
-
-                BitacoraController::store ($request,"Odontograma Creado");
-
-                   return redirect()->route('odontogramas.index')
-                   ->with('warning','Funcion completada existosamente');
-
+        $odontograma->diente()->sync($request->get('dientes'));
+        BitacoraController::store($request, "Odontograma Creado");
+        return redirect()->route('odontogramas.index')
+            ->with('warning', 'Funcion completada existosamente');
     }
 
     /**
@@ -70,14 +70,14 @@ class OdontogramaController extends Controller
     public function show($id)
     {
 
-                $aux=DB::table('piezadental as pz')
-                ->join('odontograma','odontograma.id','=','pz.IdOdontograma')
-                ->join('diente','diente.id','=','pz.IdDiente')
-                ->where('odontograma.id','=',$id)
-                ->select('diente.descripcion as des','diente.nombre as dn')
-                ->get();
+        $aux = DB::table('piezadental as pz')
+            ->join('odontograma', 'odontograma.id', '=', 'pz.IdOdontograma')
+            ->join('diente', 'diente.id', '=', 'pz.IdDiente')
+            ->where('odontograma.id', '=', $id)
+            ->select('diente.descripcion as des', 'diente.nombre as dn')
+            ->get();
 
-                return view('odontogramas.show',compact('aux'));
+        return view('odontogramas.show', compact('aux'));
     }
 
     /**
@@ -88,11 +88,11 @@ class OdontogramaController extends Controller
      */
     public function edit($id)
     {
-        $odontograma=Odontograma::find($id);
-        $diente=diente::get();
-        $piezadental=DB::table('piezadental')->where("piezadental.IdOdontograma",$id)
-        ->pluck('piezadental.IdDiente','piezadental.IdDiente')->toArray();
-        return view('odontogramas.edit',compact('odontograma','diente','piezadental'));
+        $odontograma = Odontograma::find($id);
+        $diente = diente::get();
+        $piezadental = DB::table('piezadental')->where("piezadental.IdOdontograma", $id)
+            ->pluck('piezadental.IdDiente', 'piezadental.IdDiente')->toArray();
+        return view('odontogramas.edit', compact('odontograma', 'diente', 'piezadental'));
     }
 
     /**
@@ -104,17 +104,13 @@ class OdontogramaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $odontograma=Odontograma::find($id);
+        $odontograma = Odontograma::find($id);
         $odontograma->save();
-        DB::table("piezadental")->where("piezadental.odontograma_id",$id)
-            ->delete();
-            $odontograma->diente()->sync($request->get('dientes'));
-
-                      BitacoraController::store ($request,"Odontograma Creado");
-
-                         return redirect()->route('odontogramas.index')
-                         ->with('warning','Funcion completada existosamente');
-
+        DB::table("piezadental")->where("piezadental.IdOdontograma", $id)->delete();
+        $odontograma->diente()->sync($request->get('dientes'));
+        BitacoraController::store($request, "Odontograma Creado");
+        return redirect()->route('odontogramas.index')
+            ->with('warning', 'Funcion completada existosamente');
     }
 
     /**
@@ -123,15 +119,14 @@ class OdontogramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
 
-      DB::table("odontograma")->where('id',$id)->delete();
-      DB::table("piezadental")->where("piezadental.odontograma_id",$id)
-          ->delete();
+        DB::table("odontograma")->where('id', $id)->delete();
+        DB::table("piezadental")->where("piezadental.IdOdontograma", $id)->delete();
 
-     BitacoraController::store ($request,"Se Elimino un Odontograma");
-      return redirect()->route('odontogramas.index')
-          ->with('success','Proceso realizado con exito');
+        BitacoraController::store($request, "Se Elimino un Odontograma");
+        return redirect()->route('odontogramas.index')
+            ->with('success', 'Proceso realizado con exito');
     }
 }

@@ -7,23 +7,23 @@ use Carbon\Carbon;
 
 class Cita extends Model
 {
-  protected $table = "cita";
-  public $timestamps=false;
-  protected $fillable = ['id','hora','fecha','descripcion','agenda_id','idPacient'];
-  protected $primaryKey = 'id';
+    protected $table = "cita";
+    protected $primaryKey = 'id';
+    protected $fillable = ['Fecha', 'Hora', 'Descripcion', 'IdRecepcionist', 'IdAgenda', 'IdPacient'];
+    public $timestamps = false;
 
-  
+
     public function getDateOfBirthAttribute($value)
     {
         return Carbon::parse($value)->format('m/d/Y');
     }
-     public function formDateOfBirthAttribute($value)
+    public function formDateOfBirthAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d');
     }
 
-    public function detalle(){
-     return $this->hasMany(DetalleCita::class);
+    public function detalle()
+    {
+        return $this->hasMany(DetalleCita::class);
     }
-
 }
