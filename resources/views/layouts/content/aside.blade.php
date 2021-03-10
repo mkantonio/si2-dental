@@ -87,7 +87,7 @@
                         <li class="{{ (request()->is('odontologos')) ? 'active' : '' }}" ><a href="{{ route('odontologos.index') }}"><i class="fa fa-circle-o"></i> Gestionar Odontologos</a></li>
                         <li class="{{ (request()->is('especialidades')) ? 'active' : '' }}" ><a href="{{ route('especialidades.index') }}"><i class="fa fa-circle-o"></i> Gestionar Especialidad </a></li>
                         <li class="{{ (request()->is('recepcionistas')) ? 'active' : '' }}" ><a href="{{ route('recepcionistas.index') }}"><i class="fa fa-circle-o"></i> Gestionar Recepcionista</a></li>
-                        <li ><a href=""><i class="fa fa-circle-o"></i> Gestionar Tratamiento</a></li>
+                        <li class="{{ (request()->is('tratamiento')) ? 'active' : '' }}" ><a href="{{ route('tratamiento.index') }}"><i class="fa fa-circle-o"></i> Gestionar Tratamiento</a></li>
 
                     </ul>
                 </li>

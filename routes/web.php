@@ -16,6 +16,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\anamnesisController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DetalleCitaController;
+use App\Http\Controllers\TratamientoController;
 use App\Http\Controllers\OdontologoController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\planController;
@@ -60,6 +61,7 @@ Route::resource('piezas', PiezaController::class);
 Route::resource('servicios', ServicioController::class);
 Route::resource('pagos', planController::class);
 Route::resource('cuotas', cuotaController::class);
+Route::resource('tratamiento', TratamientoController::class);
 
 
 Route::middleware(['auth'])->group(function () {
