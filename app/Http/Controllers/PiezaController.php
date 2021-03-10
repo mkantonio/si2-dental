@@ -25,14 +25,18 @@ class PiezaController extends Controller
      */
     public function index()
     {
-      $detalle=DB::table('persona as p')
-        ->join('paciente','paciente.TipoP','=','p.id')
-        ->join('historial','historial.IdPaciente','=','paciente.id')
-        ->join('odontograma','odontograma.id','=','historial.IdOdontograma')
-        ->where('p.TipoP','=','Paciente')
-        ->select('odontograma.id','p.CI','p.Nombre as nombreP','p.Apellido as apell')
-        ->get();
-        return view('piezas.index',compact('detalle'));
+        $detalle = DB::table('persona as p')
+            ->join('paciente', 'paciente.TipoP', '=', 'p.id')
+            ->join('odontograma', 'odontograma.IdPaciente', '=', 'paciente.id')
+            // ->join('historial','historial.IdOdontograma','=','odontograma.id')
+            ->join('piezadental', 'piezadental.IdOdontograma', '=', 'odontograma.id')
+            ->where('p.TipoP', '=', 'Paciente')
+            ->select('odontograma.id', 'p.CI', 'p.Nombre as nombreP', 'p.Apellido as apell')
+            ->groupBy('odontograma.id', 'p.CI', 'p.Nombre', 'p.Apellido')
+            ->get();
+        
+
+        return view('piezas.index', compact('detalle'));
     }
 
     /**
@@ -42,7 +46,6 @@ class PiezaController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -65,14 +68,14 @@ class PiezaController extends Controller
     public function show($id)
     {
 
-          $aux=DB::table('piezadental as pz')
-          ->join('odontograma','odontograma.id','=','pz.IdOdontograma')
-          ->join('dientes','dientes.id','=','pz.IdDiente')
-          ->where('odontograma.id','=',$id)
-          ->select('dientes.Descripcion as des','dientes.Nombre as dn')
-          ->get();
-        
-          return view('piezas.show',compact('piezasdetalle','aux'));
+        $aux = DB::table('piezadental as pz')
+            ->join('odontograma', 'odontograma.id', '=', 'pz.IdOdontograma')
+            ->join('dientes', 'dientes.id', '=', 'pz.IdDiente')
+            ->where('odontograma.id', '=', $id)
+            ->select('dientes.Descripcion as des', 'dientes.Nombre as dn')
+            ->get();
+
+        return view('piezas.show', compact('piezasdetalle', 'aux'));
     }
 
     /**
@@ -84,12 +87,11 @@ class PiezaController extends Controller
     public function edit($id)
     {
 
-       $prueba=PiezaDental::find($id);
-       $pieza=DB::table('piezadental')
-       ->where('piezadental.id','=',$id)
-       ->pluck('piezadental.id')->toArray();
-        return view('piezas.edit',compact('pieza','prueba'));
-
+        $prueba = PiezaDental::find($id);
+        $pieza = DB::table('piezadental')
+            ->where('piezadental.id', '=', $id)
+            ->pluck('piezadental.id')->toArray();
+        return view('piezas.edit', compact('pieza', 'prueba'));
     }
 
     /**
