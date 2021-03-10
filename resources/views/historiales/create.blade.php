@@ -14,7 +14,7 @@
     </div>
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>Error!</strong> Verifica que los campos esten correctamente llenados.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -23,7 +23,8 @@
         </div>
     @endif
     <form method="POST" action="{{ route('historiales.store') }}" accept-charset="UTF-8">
-
+        @method('POST')
+        @csrf
 
         <div class="col-xs-10 col-sm-12 col-md-10">
             <div class="form-group">

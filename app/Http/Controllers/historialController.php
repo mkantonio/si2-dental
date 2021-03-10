@@ -42,7 +42,7 @@ class historialController extends Controller
       ->join('persona as p', 'p.id', '=', 'pa.TipoP')
       ->where('p.TipoP', '=', 'Paciente')
       ->get();
-      // dd($enfermedades); die();
+    // dd($enfermedades); die();
     $odontogramas = DB::table('odontograma')
       ->select('odontograma.id')
       ->get();
@@ -58,23 +58,50 @@ class historialController extends Controller
   public function store(Request $request)
   {
 
-    $anamnesis = new Anamnesis();
-    $anamnesis->estado = $request->input('estado');
-    $anamnesis->descripcion = $request->input('descripcion');
-    $anamnesis->pregunta1 = $request->input('pregunta1');
-    $anamnesis->pregunta2 = $request->input('pregunta2');
-    $anamnesis->pregunta3 = $request->input('pregunta3');
-    $anamnesis->pregunta4 = $request->input('pregunta4');
-    $anamnesis->pregunta5 = $request->input('pregunta5');
-    $anamnesis->pregunta6 = $request->input('pregunta6');
-    $anamnesis->save();
+
+    $this->validate($request, [
+      'IdPaciente' => 'required',
+      'IdOdontograma' => 'required',
+      'pregunta1' => 'required',
+      'pregunta2' => 'required',
+      'pregunta3' => 'required',
+      'pregunta4' => 'required',
+      'pregunta5' => 'required',
+      'descripcion' => 'required',
+      'enfermedades' => 'required',
+    ]);
+
+    $persona = Persona::find($request->IdPaciente);
+    $anamnesis = Anamnesis::create([
+      'Estado' => $request->input('estado'),
+      'Descripcion' => $request->input('descripcion'),
+      'Pregunta1' => $request->input('pregunta1'),
+      'Pregunta2' => $request->input('pregunta2'),
+      'Pregunta3' => $request->input('pregunta3'),
+      'Pregunta4' => $request->input('pregunta4'),
+      'Pregunta5' => $request->input('pregunta5'),
+      'IdPaciente' => $persona->paciente->id,
+    ]);
+    // $anamnesis = new Anamnesis();
+    // $anamnesis->Estado = $request->input('estado');
+    // $anamnesis->Descripcion = $request->input('descripcion');
+    // $anamnesis->Pregunta1 = $request->input('pregunta1');
+    // $anamnesis->Pregunta2 = $request->input('pregunta2');
+    // $anamnesis->Pregunta3 = $request->input('pregunta3');
+    // $anamnesis->Pregunta4 = $request->input('pregunta4');
+    // $anamnesis->Pregunta5 = $request->input('pregunta5');
+    // $anamnesis->save();
     $anamnesis->padecimientos()->sync($request->get('enfermedades'));
 
-    $historial = new Historial();
-    $historial->paciente_id = $request->input('id');
-    $historial->anamnesis_id = $anamnesis->id;
-    $historial->odontograma_id = $request->input('id_odonto');
-    $historial->save();
+    $historial = Historial::create([
+      'IdAnamnesis' => $anamnesis->id,
+      'IdOdontograma' => $request->IdOdontograma,
+    ]);
+    // $historial = new Historial();
+    // $historial->paciente_id = $request->input('id');
+    // $historial->anamnesis_id = $anamnesis->id;
+    // $historial->odontograma_id = $request->input('id_odonto');
+    // $historial->save();
 
     BitacoraController::store($request, "Registrar Historial");
 
@@ -105,7 +132,7 @@ class historialController extends Controller
       ->select('persona.Nombre as name', 'tratamiento.Nombre as name1', 'cita.id as id_cita')
       ->get();
 
-      
+
     return view('historiales.show', compact('citas'));
   }
 
