@@ -9,7 +9,7 @@ class Anamnesis extends Model
 {
   protected $table = "anamnesis";
   protected $primaryKey = 'id';
-  protected $fillable = ['Estado', 'Descripcion', 'Pregunta1', 'Pregunta2', 'Pregunta3', 'Pregunta4', 'Pregunta5'];
+  protected $fillable = ['Estado', 'Descripcion', 'Pregunta1', 'Pregunta2', 'Pregunta3', 'Pregunta4', 'Pregunta5', 'IdPaciente'];
   public $timestamps = false;
 
 
