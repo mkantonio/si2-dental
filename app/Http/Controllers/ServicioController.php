@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Cita;
 use App\Models\Tratamiento;
 use App\Models\Servicio;
 use App\Models\DetalleServicio;
@@ -27,7 +28,10 @@ class ServicioController extends Controller
             ->where('persona.TipoP', '=', 'Odontologo')
             ->select('servicio.id', 'ds.*', 'tratamiento.nombre as name', 'cita.id as idcita', 'persona.nombre as name1', 'persona.apellido as apelli')
             ->get();
-        return view('servicios.index', compact('servicios'));
+
+        $citas = Cita::all();
+
+        return view('servicios.index', compact('servicios', 'citas'));
     }
 
     /**

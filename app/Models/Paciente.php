@@ -36,4 +36,8 @@ class Paciente extends Model
         return $this->hasOne(Anamnesis::class, 'IdPaciente', 'id');
     }
 
+    public function citas(){
+        return $this->hasMany(Cita::class, 'IdPacient', 'id');
+    }
+
 }

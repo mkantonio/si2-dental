@@ -22,6 +22,7 @@
                 <th>Numero de cita</th>
                 <th>Odontologo </th>
                 <th>Tratamiento</th>
+                <th>Paciente Nombre</th>
 
               <th width="280px">Action</th>
             </tr>
@@ -34,6 +35,13 @@
                 <td>{{ $servicio->idcita}}</td>
                 <td>{{ $servicio->name1}}_{{$servicio->apelli}}</td>
                 <td>{{ $servicio->name }}</td>
+                <td>
+                    @foreach ($citas as $cita)
+                        @if ( $cita->id == $servicio->idcita )
+                            {{$cita->paciente->persona->Nombre}} {{$cita->paciente->persona->Apellido}}
+                        @endif
+                    @endforeach
+                </td>
 
                 <td>
                     <a class="btn btn-info" style="min-width: 35px;height: 35px"href="

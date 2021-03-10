@@ -26,4 +26,8 @@ class Cita extends Model
     {
         return $this->hasMany(DetalleCita::class);
     }
+
+    public function paciente(){
+        return $this->belongsTo(Paciente::class, 'IdPacient', 'id' );
+    }
 }

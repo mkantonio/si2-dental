@@ -104,6 +104,8 @@ class historialController extends Controller
       ->where('historial.id', '=', $id)
       ->select('persona.Nombre as name', 'tratamiento.Nombre as name1', 'cita.id as id_cita')
       ->get();
+
+      
     return view('historiales.show', compact('citas'));
   }
 
