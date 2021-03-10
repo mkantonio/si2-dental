@@ -63,7 +63,12 @@
                 <div class="form-group">
                     <div class="alert-success">
                         <strong>Esta en tratamiento Medico</strong>
-                        <textarea placeholder="Que Tratamiento es?" class="form-control" name="pregunta1"></textarea>
+                        <textarea placeholder="Que Tratamiento es?" class="form-control" name="pregunta1">{{$anamnesis->Pregunta1}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="alert-success">
+                        <input id="IdPaciente" name="IdPaciente" type="hidden" value="{{$anamnesis->IdPaciente}}">
                     </div>
                 </div>
             </div>
@@ -221,8 +226,8 @@
                 <div class="form-group">
                     <div class="alert-success">
                         <strong>Descripcion del Paciente:</strong>
-                        <textarea placeholder="Descripcion" class="form-control" name="descripcion" rows="4"
-                            cols="40"></textarea>
+                        <textarea placeholder="Descripcion" class="form-control" name="Descripcion" rows="3"
+                            cols="40">{{$anamnesis->Descripcion}}</textarea>
                     </div>
                 </div>
             </div>

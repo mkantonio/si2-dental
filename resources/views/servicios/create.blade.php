@@ -47,7 +47,7 @@
               <select name="id_trata" class="form-control" id="id">
                   @foreach ($tratamiento as $trata)
                       <option value="{{$ac->id}}">
-                          {{$trata->nombre}}</option>
+                          {{$trata->Nombre}}</option>
                   @endforeach
               </select>
           </div>

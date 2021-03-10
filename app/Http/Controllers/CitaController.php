@@ -35,11 +35,13 @@ class CitaController extends Controller
    */
   public function create()
   {
-    $personas = DB::table('paciente as pa')
-      ->select('p.id', 'p.CI', 'p.Nombre', 'p.Apellido', 'p.Sexo', 'p.Direccion', 'p.TipoP')
-      ->join('persona as p', 'p.id', '=', 'pa.TipoP')
-      ->where('p.TipoP', '=', 'Paciente')
-      ->get();
+    // $personas = DB::table('paciente as pa')
+    //   ->select('p.id', 'p.CI', 'p.Nombre', 'p.Apellido', 'p.Sexo', 'p.Direccion', 'p.TipoP', 'pa.TipoP as IdPaciente')
+    //   ->join('persona as p', 'p.id', '=', 'pa.TipoP')
+    //   ->where('p.TipoP', '=', 'Paciente')
+    //   ->get();
+    $personas = Paciente::with('persona')->get();
+      // dd($personas); die();
     $recepcionistas = Recepcionista::with('persona')->get();
     $agenda = Agenda::agendaLibreOdontologo();
     return view('citas.create', compact('personas', 'recepcionistas', 'agenda'));
@@ -54,17 +56,25 @@ class CitaController extends Controller
   public function store(Request $request)
   {
 
-    $citas = new Cita();
-    $citas->Hora = $request->input('hora');
-    $citas->Fecha = $request->input('fecha');
-    $citas->IdAgenda = $request->input('agenda_id');
-    $citas->idPacient = $request->input('id');
-    $citas->idRecepcionist = $request->input('recepcionista');
-    $citas->Descripcion = $request->input('descripcion');
-    $citas->save();
+    $this->validate($request, [
+      'hora' => 'required',
+      'fecha' => 'required',
+      'agenda_id' => 'required',
+      'IdPacient' => 'required',
+      'descripcion' => 'required',
+      'recepcionista' => 'required',
+    ]);
+
+    $cita = Cita::create([
+      'Hora' => $request->input('hora'),
+      'Fecha' => $request->input('fecha'),
+      'IdAgenda' => $request->input('agenda_id'),
+      'IdPacient' => $request->IdPacient,
+      'IdRecepcionist' => $request->input('recepcionista'),
+      'Descripcion' => $request->input('descripcion'),
+    ]);
 
     BitacoraController::store($request, "Nueva Cita Registrada");
-
     return redirect()->route('citas.index')
       ->with('success', 'Funcion completada existosamente');
   }

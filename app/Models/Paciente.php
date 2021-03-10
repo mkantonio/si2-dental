@@ -28,8 +28,12 @@ class Paciente extends Model
         return $this->belongsTo(Persona::class, 'TipoP', 'id');
     }
 
-    public function historial(){
-        return $this->hasOne(Historial::class, 'IdPaciente', 'id');
+    // public function historial(){
+    //     return $this->hasOne(Historial::class, 'IdPaciente', 'id');
+    // }
+
+    public function anamnesis(){
+        return $this->hasOne(Anamnesis::class, 'IdPaciente', 'id');
     }
 
 }

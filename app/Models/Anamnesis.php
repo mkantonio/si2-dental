@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Model;
 
 class Anamnesis extends Model
@@ -16,5 +17,10 @@ class Anamnesis extends Model
   public function padecimientos()
   {
     return $this->belongsToMany(Padecimiento::class, 'detalle_anamnesis', 'IdAnamnesis', 'IdPadecimiento');
+  }
+
+  public function paciente()
+  {
+    return $this->belongsTo(Paciente::class, 'IdPaciente', 'id');
   }
 }

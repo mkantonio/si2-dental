@@ -46,10 +46,10 @@
                 <div class="col-xs-10 col-sm-12 col-md-10">
                     <div class="form-group">
                         <h4>Lista de Los Pacientes :</h4>
-                        <select name="id" class="form-control" id="id">
-                            @foreach ($personas as $ac)
-                                <option value="{{ $ac->id }}">
-                                    {{ $ac->Nombre }}</option>
+                        <select name="IdPacient" class="form-control" id="id">
+                            @foreach ($personas as $persona)
+                                <option value="{{ $persona->id }}">
+                                    {{ $persona->persona->Nombre }}</option>
                             @endforeach
                         </select>
                     </div>

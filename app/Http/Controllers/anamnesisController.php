@@ -19,7 +19,7 @@ class anamnesisController extends Controller
   {
     $aux = DB::table('anamnesis')
       ->join('historial', 'historial.IdAnamnesis', '=', 'anamnesis.id')
-      ->join('paciente', 'historial.IdPaciente', '=', 'paciente.id')
+      ->join('paciente', 'anamnesis.IdPaciente', '=', 'paciente.id')
       ->join('persona', 'paciente.TipoP', '=', 'persona.id')
       ->where('persona.tipoP', '=', 'paciente')
       ->select('anamnesis.id as id_a', 'persona.ci', 'persona.nombre as nombreP', 'persona.apellido as apell', 'paciente.fecha')
@@ -71,7 +71,7 @@ class anamnesisController extends Controller
   {
     $citas = DB::table('anamnesis')
       ->join('historial', 'historial.IdAnamnesis', '=', 'anamnesis.id')
-      ->join('paciente', 'historial.IdPaciente', '=', 'paciente.id')
+      ->join('paciente', 'anamnesis.IdPaciente', '=', 'paciente.id')
       ->join('persona', 'paciente.TipoP', '=', 'persona.id')
       ->where('persona.TipoP', '=', 'Paciente')
       ->where('anamnesis.id', '=', $id)
@@ -89,7 +89,9 @@ class anamnesisController extends Controller
         'anamnesis.Pregunta2',
         'anamnesis.Pregunta3',
         'anamnesis.Pregunta4',
-        'anamnesis.Pregunta5'
+        'anamnesis.Pregunta5',
+        'anamnesis.IdPaciente',
+        'anamnesis.Descripcion',
       )
       ->get();
 
@@ -121,12 +123,13 @@ class anamnesisController extends Controller
   {
     $anamnesis = Anamnesis::find($id);
     $anamnesis->Estado = $request->input('estado');
-    $anamnesis->Descripcion = $request->input('descripcion');
+    $anamnesis->Descripcion = $request->input('Descripcion');
     $anamnesis->Pregunta1 = $request->input('pregunta1');
     $anamnesis->Pregunta2 = $request->input('pregunta2');
     $anamnesis->Pregunta3 = $request->input('pregunta3');
     $anamnesis->Pregunta4 = $request->input('pregunta4');
     $anamnesis->Pregunta5 = $request->input('pregunta5');
+    $anamnesis->IdPaciente = $request->input('IdPaciente');
     $anamnesis->save();
     DB::table("detalle_anamnesis")->where("detalle_anamnesis.IdAnamnesis", $id)
       ->delete();
