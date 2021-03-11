@@ -55,7 +55,7 @@
 {{--                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}--}}
                 <select class="form-control" name="roles" id="sexo">
                     @foreach($roles as $rol)
-                        <option value="{{$rol->id}}" {{($user->getRoleNames()[0]==$rol->name) ? 'selected="selected"' : ''}}>
+                        <option value="{{$rol->name}}" {{($user->getRoleNames()[0]==$rol->name) ? 'selected="selected"' : ''}}>
                             {{$rol->name}}
                         </option>
                     @endforeach

@@ -26,7 +26,7 @@
         @method('POST')
     <div class="row">
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label><h4>Odontologos </h4> </label>
                 <select name="id" class="form-control" id="id">
@@ -47,7 +47,7 @@
                     @endforeach
                 </select>
             </div>
-        </div>
+        </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label><h4>Nombre</h4> </label>
@@ -79,9 +79,9 @@
             <div class="form-group">
             <strong><h4>Rol</h4></strong>
 {{--                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}--}}
-                <select class="form-control" name="roles[]">
+                <select class="form-control" name="roles">
                     @foreach($roles as $rol)
-                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                    <option value="{{$rol->name}}">{{$rol->name}}</option>
                     @endforeach
                 </select>
             </div>

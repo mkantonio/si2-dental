@@ -65,9 +65,13 @@ class UserController extends Controller
 
 
         $user = User::create($input);
-        foreach ($request->input('roles') as $key => $value) {
-            $user->attachRole($value);
+        
+        $roles = $user->getRoleNames();
+        foreach ($roles as $role) {
+            $user->removeRole($role);
         }
+        $user->assignRole($request->roles);
+
         $user->save();
         BitacoraController::store($request, "Nuevo Usuario");
         return redirect()->route('users.index')
@@ -123,6 +127,11 @@ class UserController extends Controller
         //        }
 
         $user = User::find($id);
+        $roles = $user->getRoleNames();
+        foreach ($roles as $role) {
+            $user->removeRole($role);
+        }
+        $user->assignRole($request->roles);
         $user->update($input);
         $user->save();
         //DB::table('role_user')->where('user_id',$id)->delete();
