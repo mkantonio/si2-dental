@@ -3,7 +3,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Lista de Agendas</h2>
+                <h2>Lista de Agendas de Odontologos</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('agendas.create') }}"> Registrar Agenda de Odontolgo</a>
             </div>
         </div>
     </div>
@@ -15,33 +18,30 @@
     <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Nombre del Paciente</th>
-                <th>Apellido</th>
-                <th>Hora de la Cita</th>
-                <th>Fecha de la Cita</th>
-                <th>motivo</th>
-
+                <th>ID</th>
+                <th>Odontologo</th>
+                <th>Hora</th>
+                <th>Fecha</th>
+                <th>Disponibilidad</th>
                 <th width="280px">Action</th>
             </tr>
         </thead>
         <tfoot>
         </tfoot>
         <tbody>
-        @foreach ($citas as $key => $cita)
-            <tr>
-                <td>{{ $cita->nombreP }}</td>
-                <td>{{ $cita->apell }}</td>
-                <td>{{ $cita->hora }}</td>
-                <td>{{ $cita->fecha }}</td>
-                <td>{{ $cita->descripcion }}</td>
-                <td>
-<a class="btn btn-info"  style="min-width: 35px;height: 35px"  href="{{ route('citas.show',$cita->id) }}"><i class="fa  fa-info"></i>Detalle De Cita</a>
-                    <a class="btn btn-success" style="min-width: 35px;height: 35px"href="
-                    {{ route('citas.edit',$cita->id) }}"><i class="fa fa-edit"></i>Reprogramar Cita</a>
-
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($agendas as $key => $agenda)
+                <tr>
+                    <td>{{ $agenda->id }}</td>
+                    <td>{{ $agenda->odontologo->persona->Nombre }}</td>
+                    <td>{{ $agenda->Hora }}</td>
+                    <td>{{ $agenda->Fecha }}</td>
+                    <td>{{ $agenda->Disponibilidad }}</td>
+                    <td>
+                        <a class="btn btn-info" style="min-width: 35px;height: 35px" href="{{ route('agendas.show', $agenda->id) }}"><i class="fa  fa-info"></i>Detalle de agenda</a>
+                        <a class="btn btn-success" style="min-width: 35px;height: 35px" href="{{ route('agendas.edit', $agenda->id) }}"><i class="fa fa-edit"></i>Editar Agenda</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

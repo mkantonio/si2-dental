@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Cita;
+use App\Models\Agenda;
 use App\Models\Persona;
 use App\Models\Paciente;
-use App\Models\Agenda;
+use App\Models\Odontologo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -21,13 +22,8 @@ class AgendaController extends Controller
      */
     public function index()
     {
-      $citas=DB::table('cita')
-      ->join('paciente','cita.idPacient','=','paciente.id')
-      ->join('persona','paciente.id','=','persona.id')
-      ->where('persona.tipoP','=','paciente')
-      ->select('cita.id','cita.hora','cita.fecha','persona.nombre as nombreP','persona.apellido as apell','cita.descripcion')
-      ->get();
-       return view('agendas.index',compact('citas'));
+      $agendas = Agenda::with('odontologo')->get();
+       return view('agendas.index',compact('agendas'));
     }
 
     /**
@@ -37,7 +33,8 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        //
+        $odontologos = Odontologo::with('persona')->get();
+        return view('agendas.create', compact('odontologos'));
     }
 
     /**
@@ -48,7 +45,24 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'Fecha' => 'required',
+            'Hora' => 'required',
+            'Disponibilidad' => 'required',
+            'odontologo' => 'required',
+          ]);
+
+          $agenda = new Agenda();
+          $agenda->Fecha = $request->Fecha;
+          $agenda->Hora = $request->Hora;
+          $agenda->Disponibilidad = $request->Disponibilidad;
+          $agenda->IdOdontol = $request->odontologo;
+          $agenda->save();
+  
+          BitacoraController::store($request, "Datos de la Agenda Modificadados");
+          return redirect()->route('agendas.index')
+              ->with('success', 'Funcion completada existosamente');
+      
     }
 
     /**
@@ -59,7 +73,8 @@ class AgendaController extends Controller
      */
     public function show($id)
     {
-        //
+        $agenda = Agenda::find($id)->with('odontologo')->first();
+        return view('agendas.show', compact('agenda'));
     }
 
     /**
@@ -70,7 +85,8 @@ class AgendaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $agenda = Agenda::find($id)->with('odontologo')->first();
+        return view('agendas.edit', compact('agenda'));
     }
 
     /**
@@ -82,7 +98,17 @@ class AgendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $agenda = Agenda::find($id)->with('odontologo')->first();
+        $agenda->Fecha = $request->Fecha;
+        $agenda->Hora = $request->Hora;
+        $agenda->Disponibilidad = $request->Disponibilidad;
+        $agenda->IdOdontol = $agenda->odontologo->id;
+        $agenda->save();
+
+        BitacoraController::store($request, "Datos de la Agenda Modificadados");
+        return redirect()->route('agendas.index')
+            ->with('success', 'Funcion completada existosamente');
+
     }
 
     /**
