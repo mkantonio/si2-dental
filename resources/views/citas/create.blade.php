@@ -61,7 +61,7 @@
                         <select name="agenda_id" class="form-control" id="idr">
                             @foreach ($agenda as $a)
                                 <option value="{{ $a->id }}">
-                                    {{ $a->odontologo->persona->Nombre }}
+                                    {{ $a->odontologo->persona->Nombre }} {{ $a->odontologo->persona->Apellido }} - {{ $a->Fecha }} - {{ $a->Hora }} - {{ $a->Disponibilidad }}
                                 </option>
                             @endforeach
                         </select>
