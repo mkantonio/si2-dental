@@ -57,7 +57,7 @@
                 </li>
 
             @endcan
-            @can('Pagos')
+            {{-- @can('Pagos')
                 <li class="desactive treeview">
                     <a href="#">
                         <i class="fa fa-money"></i> <span>Pagos</span>
@@ -74,7 +74,7 @@
                     </ul>
                 </li>
 
-            @endcan
+            @endcan --}}
             @can('Odontologos')
                 <li class="desactive treeview">
                     <a href="#">
